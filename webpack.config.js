@@ -1,6 +1,8 @@
 const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   devtool: "source-map",
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsc", ".json"]
@@ -21,5 +23,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
-  target: 'node'
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
 }
