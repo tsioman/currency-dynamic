@@ -1,6 +1,14 @@
 import { parser } from "../parser";
 
 describe("Parser correct cases", () => {
+  it ("2 ^ 3", ()=> {
+    expect(parser("2 ^ 3")).toEqual([2, "^", 3])
+  });
+
+  it ("2 ^ 3 + 1", ()=> {
+    expect(parser("2 ^ 3 + 1")).toEqual([2, "^", 3, "+", 1])
+  });
+
   it("1 + 32", () => {
     expect(parser("1 + 32")).toEqual([1, "+", 32]);
   });

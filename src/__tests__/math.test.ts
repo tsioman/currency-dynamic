@@ -1,6 +1,10 @@
-import { mul, div, add, minus } from "../operators";
+import { mul, div, add, minus, pow } from "../operators";
 
 describe("math operators test cases", () => {
+  it("pow 2 ^ 3 to equal 8", () => {
+    expect(pow(2, 3)).toBe(8);
+  });
+
   it("mul 1 * 2 to equal 2", () => {
     expect(mul(1, 2)).toBe(2);
   });

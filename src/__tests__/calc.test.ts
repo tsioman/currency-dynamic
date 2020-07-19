@@ -1,6 +1,10 @@
 import { calc } from "../calc";
 
 describe("Runner simple cases", () => {
+  it("2 ^ 3", () => {
+    expect(calc("2 ^ 3")).toEqual(8);
+  });
+
   it("1 * 32", () => {
     expect(calc("1 * 32")).toEqual(32);
   });
@@ -15,6 +19,10 @@ describe("Runner simple cases", () => {
 });
 
 describe("Runner tripled/mixed cases", () => {
+  it("2 ^ 3 * 3", () => {
+    expect(calc("2 ^ 3 * 3")).toEqual(24);
+  });
+
   it("2 * 2 * 3", () => {
     expect(calc("2 * 2 * 3")).toEqual(12);
   });
@@ -29,8 +37,8 @@ describe("Runner tripled/mixed cases", () => {
 });
 
 describe("Runner long cases", () => {
-  it("20 + 1 * 10 - 5 * 3", () => {
-    expect(calc("20 + 1 * 10 - 5 * 3")).toEqual(15);
+  it("20 + 1 * 10 - 5 * 3 + 2 ^ 3", () => {
+    expect(calc("20 + 1 * 10 - 5 * 3 + 2 ^ 3")).toEqual(23);
   });
 
   it("20 - 10 * 10 / 5 - 3", () => {

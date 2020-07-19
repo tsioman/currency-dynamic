@@ -1,6 +1,10 @@
 import { firstPrioritiesCalc, secondPrioritiesCalc } from "../engine";
 
 describe("firstPrioritiesCalc simple cases", () => {
+  it("[2, ^ 3]", () => {
+    expect(firstPrioritiesCalc([2, "^", 3])).toEqual([8]);
+  });
+
   it("[1, * 32]", () => {
     expect(firstPrioritiesCalc([1, "*", 32])).toEqual([32]);
   });
@@ -15,11 +19,13 @@ describe("firstPrioritiesCalc simple cases", () => {
 });
 
 describe("firstPrioritiesCalc mixed with second priorities cases", () => {
-  it("[32, /, 32, +, 10, *, 10]", () => {
-    expect(firstPrioritiesCalc([32, "/", 32, "+", 10, "*", 10])).toEqual([
+  it("[32, /, 32, +, 10, *, 10 + 2 ^ 3]", () => {
+    expect(firstPrioritiesCalc([32, "/", 32, "+", 10, "*", 10, "+", 2, "^", 3])).toEqual([
       1,
       "+",
       100,
+      "+",
+      8
     ]);
   });
 });
