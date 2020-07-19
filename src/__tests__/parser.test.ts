@@ -1,7 +1,11 @@
 import { parser } from "../parser";
 
 describe("Parser correct cases", () => {
-  it("5! + 10", () => {
+  it("9 + 9 **", () => {
+    expect(parser("9 + 9 **")).toEqual([9, "+", 9, "**"]);
+  });
+
+  it("5 ! + 10", () => {
     expect(parser("5 ! + 10")).toEqual([5, "!", "+", 10]);
   });
 

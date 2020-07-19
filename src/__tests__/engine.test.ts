@@ -1,12 +1,22 @@
 import { zeroPrioritiesCalc, firstPrioritiesCalc, secondPrioritiesCalc } from "../engine";
 
 describe("zeroPrioritiesCalc simple cases", () => {
+  it("[9, **]", () => {
+    expect(zeroPrioritiesCalc([9, "**"])).toEqual([81]);
+  })
+
   it("[5, !]", () => {
     expect(zeroPrioritiesCalc([5, "!"])).toEqual([120]);
   });
 })
 
 describe("zeroPrioritiesCalc mixed with first cases", () => {
+  it("[9, **, +, 9]", () => {
+    expect(zeroPrioritiesCalc([9, "**", "+", 9])).toEqual([
+      81, "+", 9
+    ]);
+  })
+
   it("[10, +, 20, *, 2, +, 5, !]", () => {
     expect(zeroPrioritiesCalc([10, "+", 20, "*", 2, "+", 5, "!"])).toEqual([
       10, "+", 20, "*", 2, "+", 120
@@ -44,6 +54,14 @@ describe("firstPrioritiesCalc mixed with second priorities cases", () => {
     ]);
   });
 });
+
+describe("zeroPrioritiesCacl invalid cases", ()=> {
+  it("[**, 9]", ()=> {
+    expect(()=>zeroPrioritiesCalc(["**", 9])).toThrow(
+      TypeError("Unexpected stack!")
+    )
+  })
+})
 
 describe("secondPrioritiesCalc invalid cases", () => {
   it("[32, / 32]", () => {

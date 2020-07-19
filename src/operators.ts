@@ -1,6 +1,8 @@
 export type ScalarOperationType = (first: number, second: number) => number;
 export type SingleOperationType = (value: number) => number;
 
+export const sqr: SingleOperationType = (value) => value * value;
+
 export const fac: SingleOperationType = (value) =>
   value ? value * fac(value - 1) : 1;
 
@@ -26,6 +28,7 @@ export const mathOperators: { [key: string]: ScalarOperationType } = {
 
 export const singleMathOperators: { [key: string]: SingleOperationType } = {
   "!": fac,
+  "**": sqr
 };
 
 export const mathPriorities: number[] = [0, 1, 2];
@@ -33,6 +36,7 @@ export const mathPriorities: number[] = [0, 1, 2];
 const [ZERO, FIRST, SECOND] = mathPriorities;
 
 export const mathOperatorsPriorities: { [key: string]: number } = {
+  "**": ZERO,
   "!": ZERO,
   "^": FIRST,
   "*": FIRST,

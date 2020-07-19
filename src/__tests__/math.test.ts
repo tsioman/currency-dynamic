@@ -1,8 +1,12 @@
-import { mul, div, add, minus, pow, fac } from "../operators";
+import { mul, div, add, minus, pow, fac, sqr } from "../operators";
 
 describe("math operators test cases", () => {
   
-  it("5! to equal 120", () => {
+  it("9 ** to equal 81", () => {
+    expect(sqr(9)).toBe(81);
+  });
+
+  it("5 ! to equal 120", () => {
     expect(fac(5)).toBe(120);
   });
 

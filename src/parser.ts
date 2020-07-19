@@ -18,7 +18,8 @@ export const parser = (line: string): ParsedLineType | null => {
       isNumber(prevItem) &&
       !isNumber(item) &&
       mathOperators.hasOwnProperty(item) ||
-      isPrevSingleOperator && !isNumber(item)
+      isPrevSingleOperator && !isNumber(item) ||
+      singleMathOperators.hasOwnProperty(item)
      
 
     if (isValidNumberPush) {

@@ -14,7 +14,7 @@ export const zeroPrioritiesCalc = (stack: ParsedLineType): ParsedLineType =>
     const prevItem = result[result.length - 1];
 
     if (!isNumber(String(item)) && mathOperatorsPriorities[item] === ZERO) {
-      if (!mathOperators[item]) {
+      if (!singleMathOperators[item] || !Number(prevItem)) {
         throw new TypeError("Unexpected stack!");
       }
       result = [
