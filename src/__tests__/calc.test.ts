@@ -1,6 +1,14 @@
 import { calc } from "../calc";
 
 describe("Runner simple cases", () => {
+  it("(2 + 2) * 4", () => {
+    expect(calc("(2 + 2) * 4")).toEqual(16);
+  });
+
+  it("(2 + 2) * 4", () => {
+    expect(calc("(2 + 2) * 4")).toEqual(16);
+  });
+
   it("2 ^ 3", () => {
     expect(calc("2 ^ 3")).toEqual(8);
   });
@@ -19,6 +27,7 @@ describe("Runner simple cases", () => {
 });
 
 describe("Runner tripled/mixed cases", () => {
+
   it("9 ** + 19", () => {
     expect(calc("9 ** + 19")).toEqual(100);
   });
@@ -41,7 +50,10 @@ describe("Runner tripled/mixed cases", () => {
 });
 
 describe("Runner long cases", () => {
-  
+  it("9 ** - (5 + (2 + 3) * 4 + (2 ^ 3 * (5 + 2)))", () => {
+    expect(calc("9 ** - (5 + (2 + 3) * 4 + (2 ^ 3 * (5 + 2)))")).toEqual(0);
+  });
+
   it("2 ** - 2 ^ 2 + 5!", () => {
     expect(calc("2 ** - 2 ^ 2 + 5 !")).toEqual(120);
   });
