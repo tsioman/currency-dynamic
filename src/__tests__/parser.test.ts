@@ -1,6 +1,10 @@
 import { parser } from "../parser";
 
 describe("Parser correct cases", () => {
+  it("5! + 10", () => {
+    expect(parser("5 ! + 10")).toEqual([5, "!", "+", 10]);
+  });
+
   it ("2 ^ 3", ()=> {
     expect(parser("2 ^ 3")).toEqual([2, "^", 3])
   });
