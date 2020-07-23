@@ -1,6 +1,6 @@
-import { GraphData } from "./types/dataset";
+import { GraphDataType } from "./types/";
 
-export const DataSet: GraphData = [
+export const DataSet: GraphDataType = [
   [1, 3],
   [2, 5],
   [3, 2],
