@@ -1,17 +1,14 @@
 import React from "react";
-import { Graph } from "../components/Graph";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Graph } from "../components/Graph/Graph";
+import { Button } from "../components/Button/Button";
 
-import { DataSet } from "../data";
-import { GraphDataType } from "../types/";
+import { InitialConfigType, ColorSetType, GraphDataType } from "../types/";
 
 interface IAppProps {
-  data: GraphDataType;
+  initial: InitialConfigType;
 }
-
 interface IAppState {
-  color: string;
+  color: ColorSetType;
   graph: GraphDataType;
 }
 
@@ -19,38 +16,34 @@ export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
     this.state = {
-      color: "red",
-      graph: DataSet,
+      color: this.props.initial.color,
+      graph: this.props.initial.graph,
     };
     this.onClick = this.onClick.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
-  onClick(color: string) {
+  onClick(color: ColorSetType) {
     this.setState({
       color: color,
     });
   }
-  onChange() {}
   render() {
     return (
       <div>
-        <svg width={300} height={300}>
-          <Graph
-            offset={{ x: 0, y: 0 }}
-            multiplier={10}
-            data={this.state.graph}
-            color={this.state.color}
-          />
-        </svg>
+        <Graph
+          offset={{ x: 0, y: 0 }}
+          multiplier={10}
+          data={this.state.graph}
+          color={this.state.color}
+        />
         <div className="controls">
-          <Button onClick={() => this.onClick("red")} textButton="red" />
-          <Button onClick={() => this.onClick("green")} textButton="green" />
-          <Button onClick={() => this.onClick("blue")} textButton="blue" />
-          <Button onClick={() => this.onClick("yellow")} textButton="yellow" />
-        </div>
-        <div>
-          {DataSet.map((lines) => (
-            <Input value={lines} onChnage={() => this.onChange()} />
+          {this.props.initial.colorSet.map((color, index) => (
+            <Button
+              color={color}
+              key={`key__${index}`}
+              onClick={() => this.onClick(color)}
+              textButton={color}
+              isActive={this.state.color === color}
+            />
           ))}
         </div>
       </div>

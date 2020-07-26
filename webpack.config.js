@@ -1,4 +1,5 @@
 const path = require("path")
+const webpackRules = require("./webpack.rules");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -13,14 +14,10 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|ts)x?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
-      },
+      ...webpackRules,
       {
         test: /\.css$/i,
-        loader: "css-loader",
+        loader: ["style-loader", "css-loader"],
         exclude: /node_modules/
       }
     ]

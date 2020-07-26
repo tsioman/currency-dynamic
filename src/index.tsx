@@ -1,7 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
-
+import { InitialConfig } from "./data";
 import { App } from "./containers/App";
-import { DataSet } from "./data";
 
-render(<App data={DataSet} />, document.getElementById("root"));
+render(
+  <App initial={InitialConfig} />,
+  document.getElementById("root")
+);

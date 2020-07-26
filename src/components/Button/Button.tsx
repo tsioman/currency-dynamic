@@ -1,8 +1,11 @@
 import React from "react";
-// import "./index.css";
+import "./Button.css";
+import {ColorSetType} from "../../types/";
 
 type ButtonType = {
+  color: ColorSetType;
   textButton: string;
+  isActive: boolean;
   onClick: () => void;
 };
 
@@ -12,8 +15,9 @@ export class Button extends React.Component<ButtonType> {
   }
 
   render() {
+    const className = this.props.isActive ? "button button--active" : "button";
     return (
-      <button className="button" onClick={this.props.onClick}>
+      <button className={className} onClick={this.props.onClick} style={{color: `${this.props.color}`}}>
         {this.props.textButton}
       </button>
     );

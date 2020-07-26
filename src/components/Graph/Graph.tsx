@@ -1,5 +1,5 @@
 import React from "react";
-import { SVGPath } from "../SVGPath";
+import { SVGPath } from "../SVGPath/SVGPath";
 import { GraphDataType } from "../../types";
 
 interface IGraphProps {
@@ -25,11 +25,13 @@ export class Graph extends React.Component<IGraphProps> {
   }
   render() {
     return (
-      <SVGPath
-        coords={this.prepareData()}
-        color={this.props.color}
-        strokeWidth={2}
-      />
+      <svg width={300} height={300}>
+        <SVGPath
+          coords={this.prepareData()}
+          color={this.props.color}
+          strokeWidth={2}
+        />
+      </svg>
     );
   }
 }
