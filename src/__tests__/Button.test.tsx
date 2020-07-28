@@ -12,12 +12,12 @@ describe("Button render check", () => {
         <Button
           color="red"
           textButton="red"
-          isActive={false}
           onClick={() => toggleButton()}
         />
       ).html()).toBe('<button class="button" style="color: red;">red</button>')
   });
-  it("Default red active button render", () => {
+  
+  it("Default active red button render", () => {
     expect(
       mount(
         <Button
@@ -26,7 +26,19 @@ describe("Button render check", () => {
           isActive={true}
           onClick={() => toggleButton()}
         />
-      ).html()).toBe('<button class="button button-active" style="color: red;">red</button>')
+      ).html()).toBe('<button class="button button--active" style="color: red;">red</button>')
   });
   
+  it("Button on click event work", ()=>{
+    const onClick = jest.fn();
+    const wrapper = mount(
+        <Button
+          color="red"
+          textButton="red"
+          onClick={onClick}
+        ></Button>
+      )
+    wrapper.simulate("click");
+    expect(onClick).toHaveBeenCalled();
+  })
 });
