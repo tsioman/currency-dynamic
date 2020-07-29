@@ -7,12 +7,14 @@ describe("SVGPath work correct", () => {
   it("SVGPath work correct with stable data", () => {
     expect(
       mount(
-        <SVGPath coords="M 10 10 L 20 40" color="black" strokeWidth={2} />
+        <svg>
+          <SVGPath coords="M 10 10 L 20 40" color="black" strokeWidth={2} />
+        </svg>
       ).html()
     ).toMatchSnapshot();
   });
 
-  it("svg path element with the expected d attribute", () => {
+  it('svg path element with parameter coords="M 10 10 L 20 40" has the expected attribute d = M 10 10 L 20 40', () => {
     const wrapper = shallow(
       <SVGPath coords="M 10 10 L 20 40" color="black" strokeWidth={2} />
     );

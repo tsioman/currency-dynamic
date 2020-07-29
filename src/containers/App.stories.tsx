@@ -5,7 +5,7 @@ import { ColorSetType } from "../types";
 import { InitialConfig } from "../data";
 
 export default {
-  title: "Graph App"
+  title: "Graph Full App"
 };
 
 const label = "Colors";

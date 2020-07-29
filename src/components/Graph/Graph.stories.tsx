@@ -34,8 +34,8 @@ export const GraphBody: React.FC<{}> = () => (
   <Graph
     color={value}
     offset={{
-      x: number("x", 10, undefined, graphGroupId),
-      y: number("y", 10, undefined, graphGroupId),
+      x: number("offest X:", 10, undefined, graphGroupId),
+      y: number("offest Y:", 10, undefined, graphGroupId),
     }}
     multiplier={number("Multiplier", 5, undefined, graphGroupId)}
     data={InitialConfig.graph}
