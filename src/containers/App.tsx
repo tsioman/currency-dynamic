@@ -21,15 +21,14 @@ export class App extends React.Component<IAppProps, IAppState> {
     };
     this.onClick = this.onClick.bind(this);
   }
-  componentDidUpdate() {
-    console.log (this.props)
-  }
+
   onClick(color: ColorSetType) {
     this.setState({
       color: color,
     });
   }
   render() {
+    let buttonKey = 1;
     return (
       <div>
         <Graph
@@ -39,10 +38,10 @@ export class App extends React.Component<IAppProps, IAppState> {
           color={this.state.color}
         />
         <div className="controls">
-          {this.props.initial.colorSet.map((color, index) => (
+          {this.props.initial.colorSet.map((color) => (
             <Button
               color={color}
-              key={`key__${index}`}
+              key={buttonKey++}
               onClick={() => this.onClick(color)}
               textButton={color}
               isActive={this.state.color === color}
