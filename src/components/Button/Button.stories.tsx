@@ -1,38 +1,29 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, optionsKnob } from "@storybook/addon-knobs";
+import { withKnobs, boolean, text } from "@storybook/addon-knobs";
 import { Button } from "./Button";
-import { ColorSetType } from "../../types";
+import { InitialConfig } from "../../data";
 
 export default {
   title: "GraphMakerComponents",
   decorators: [withKnobs],
 };
 
-const label = "Colors";
-const options: Record<ColorSetType, string> = {
-  red: "red",
-  green: "green",
-  blue: "blue",
-  violet: "violet",
-};
-const defaultValue = "red";
-
-const value = optionsKnob(
-  label,
-  options,
-  defaultValue,
-  {
-    display: "inline-radio",
-  },
-  "Colors"
-);
-
 export const GraphButton: React.FC<{}> = () => (
-  <Button
-    color={value as ColorSetType}
-    textButton={value}
-    isActive={boolean("Active", false)}
-    onClick={action("Button click")}
-  />
+  <>
+    {InitialConfig.colorSet.map(color => (
+      <Button
+        color={color}
+        textButton={color}
+        isActive={boolean("Active", false)}
+        onClick={action("Button click")}
+      />
+    ))}
+    <Button
+        color={"blue"}
+        textButton={text("any text", "long long text on button")}
+        isActive={boolean("Active", false)}
+        onClick={action("Button click")}
+      />
+  </>
 );

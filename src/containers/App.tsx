@@ -21,6 +21,9 @@ export class App extends React.Component<IAppProps, IAppState> {
     };
     this.onClick = this.onClick.bind(this);
   }
+  componentDidUpdate() {
+    console.log (this.props)
+  }
   onClick(color: ColorSetType) {
     this.setState({
       color: color,
