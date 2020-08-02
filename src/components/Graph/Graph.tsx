@@ -1,6 +1,6 @@
 import React from "react";
 import { SVGPath } from "../SVGPath/SVGPath";
-import { GraphDataType } from "../../types";
+import { GraphDataType } from "../../types/index";
 
 interface ISVGData {
   offset: { x: number; y: number };
