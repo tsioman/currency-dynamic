@@ -1,4 +1,4 @@
-import { GraphDataType } from "../../types/index";
+import { GraphDataType } from "../../types";
 import { http } from "../../api/index";
 
 export type currencyAvaiableType = "RUB" | "USD";

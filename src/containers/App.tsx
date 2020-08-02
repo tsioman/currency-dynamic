@@ -2,7 +2,7 @@ import React from "react";
 import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
 
-import { InitialConfigType, ColorSetType, GraphDataType } from "../types/index";
+import { InitialConfigType, ColorSetType, GraphDataType } from "../types";
 
 import {
   getCurrency,
