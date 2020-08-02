@@ -6,13 +6,6 @@ type PathType = {
   coords: string;
 };
 
-export const SVGPath: React.FC<PathType> = ({ color, coords, strokeWidth }) => {
-  return (
-    <path
-      d={coords}
-      stroke={color}
-      strokeWidth={strokeWidth}
-      fill="none"
-    ></path>
-  );
-};
+export const SVGPath: React.FC<PathType> = ({ color, coords, strokeWidth }) => (
+  <path d={coords} stroke={color} strokeWidth={strokeWidth} fill="none"></path>
+);

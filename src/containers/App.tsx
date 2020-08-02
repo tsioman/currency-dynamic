@@ -23,9 +23,7 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   onClick(color: ColorSetType) {
-    this.setState({
-      color: color,
-    });
+    this.setState({ color });
   }
   render() {
     let buttonKey = 1;

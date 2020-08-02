@@ -9,21 +9,20 @@ type ButtonType = {
   onClick: () => void;
 };
 
-export class Button extends React.Component<ButtonType> {
-  constructor(props: ButtonType) {
-    super(props);
-  }
-
-  render() {
-    const className = this.props.isActive ? "button button--active" : "button";
-    return (
-      <button
-        className={className}
-        onClick={this.props.onClick}
-        style={{ color: `${this.props.color}` }}
-      >
-        {this.props.textButton}
-      </button>
-    );
-  }
-}
+export const Button: React.FC<ButtonType> = ({
+  color,
+  textButton,
+  isActive,
+  onClick,
+}) => {
+  const className = isActive ? "button button--active" : "button";
+  return (
+    <button
+      className={className}
+      onClick={onClick}
+      style={{ color: `${color}` }}
+    >
+      {textButton}
+    </button>
+  );
+};

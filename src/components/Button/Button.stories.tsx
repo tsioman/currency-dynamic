@@ -8,11 +8,12 @@ export default {
   title: "GraphMakerComponents",
   decorators: [withKnobs],
 };
-
+let buttonKey = 1;
 export const GraphButton: React.FC<{}> = () => (
   <>
     {InitialConfig.colorSet.map(color => (
       <Button
+        key={buttonKey++}
         color={color}
         textButton={color}
         isActive={boolean("Active", false)}
@@ -22,7 +23,7 @@ export const GraphButton: React.FC<{}> = () => (
     <Button
         color={"blue"}
         textButton={text("any text", "long long text on button")}
-        isActive={boolean("Active", false)}
+        isActive={boolean("Active", true)}
         onClick={action("Button click")}
       />
   </>

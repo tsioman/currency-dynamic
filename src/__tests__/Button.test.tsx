@@ -13,7 +13,7 @@ const wrapper = mount(
 describe("Button render check", () => {
   it("Default red button render", () => {
     expect(
-      wrapper.html()).toBe('<button class="button" style="color: red;">red</button>')
+      wrapper.html()).toMatchInlineSnapshot('<button class="button" style="color: red;">red</button>')
   });
   it("Button on click event work", () => {
     wrapper.simulate("click");
