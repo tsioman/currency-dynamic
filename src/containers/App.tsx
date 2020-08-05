@@ -45,7 +45,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.setState({ color });
   }
 
-  
+
   loadGraph() {
     this.setState({
       graph: convertCurrencyToGraph(this.state.rates, this.state.currency),
@@ -56,12 +56,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     let buttonKey = 1;
     return (
       <div>
-        <Graph
-          offset={{ x: 0, y: 0 }}
-          multiplier={1}
-          data={this.state.graph}
-          color={this.state.color}
-        />
+        <Graph data={this.state.graph} options={{width: 300, height: 300, color: this.state.color}}/>
         <div className="controls">
           {this.props.initial.colorSet.map((color) => (
             <Button
