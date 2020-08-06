@@ -3,18 +3,16 @@ import { mount } from "enzyme";
 import { Button } from "../components/Button/Button";
 
 const onClick = jest.fn();
-const wrapper = mount(
-  <Button color="red" textButton="red" onClick={onClick}></Button>
-);
+
 describe("Button render check", () => {
+  const buttonWrapper = mount(<Button color="red" textButton="red" onClick={onClick}></Button>);
   it("Default red button render", () => {
-    expect(wrapper.html()).toMatchInlineSnapshot(
-      '<button class="button" style="color: red;">red</button>',
-      '<button class="button" style="color: red;">red</button>'
-    );
+
+    expect(buttonWrapper.render()).toMatchSnapshot(
+      '<button class="button" style="color: red;">red</button>');
   });
   it("Button on click event work", () => {
-    wrapper.simulate("click");
+    buttonWrapper.simulate("click");
     expect(onClick).toHaveBeenCalled();
   });
   it("Active red button has class button--active", () => {
