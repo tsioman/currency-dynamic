@@ -1,38 +1,26 @@
 import React from "react";
 import { SVGPath } from "../SVGPath/SVGPath";
-import { GraphDataType } from "../../types/";
+import { GraphDataType, ColorSetType } from "../../types";
+import { Axis } from "../Axis/Axis";
+import { GraphBody } from "../GraphBody/GraphBody";
 
-interface ISVGData {
-  offset: { x: number; y: number };
-  multiplier: number;
+interface IGraphProps {
   data: GraphDataType;
+  options: {
+    width: number;
+    height: number;
+    color: ColorSetType;
+  };
 }
 
-interface IGraphProps extends ISVGData {
-  color: string;
-}
-
-const toSVGCoordinates = ({ offset, multiplier, data }: ISVGData): string => {
-  const d = [`M ${offset.x} ${offset.y}`];
-  const collection = data.map((section): string => {
-    const xSection = offset.x + section[0] * multiplier;
-    const ySection = offset.y + section[1] * multiplier;
-    return `L ${xSection} ${ySection}`;
-  });
-  return d.concat(collection).join(" ");
-};
-
-export const Graph: React.FC<IGraphProps> = ({
-  color,
-  offset,
-  multiplier,
-  data,
-}) => (
-  <svg width={300} height={300}>
+export const Graph: React.FC<IGraphProps> = ({ data, options }) => (
+  <svg width={options.width} height={options.height}>
+    <Axis x={options.width} y={options.height} />
+    <GraphBody area={{x:options.width, y:options.height}} />
     <SVGPath
-      coords={toSVGCoordinates({ offset, multiplier, data })}
-      color={color}
-      strokeWidth={2}
+      color={options.color}
+      strokeWidth={3}
+      coords={{ offset: { x: 0, y: 0 }, multiplier: 5, data }}
     />
   </svg>
 );

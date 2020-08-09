@@ -14,7 +14,7 @@ export interface ICurrencyExchange {
   end_at: string;
 }
 
-export const getCurrency = http<ICurrencyExchange>(
+export const getRates = http<ICurrencyExchange>(
   `https://api.exchangeratesapi.io/history?start_at=2020-07-01&end_at=2020-07-10&symbols=${defaultCurrency}`
 );
 
@@ -26,7 +26,7 @@ export const convertCurrencyToGraph = (
   let i = 0; 
   let multiplier = 630 / Object.keys(rates).length
   for (let key in rates) {
-    data.push([i++ * multiplier, rates[key][currency]+3]);
+    data.push([i++ * multiplier, rates[key][currency]]);
   }
   return data;
 };
