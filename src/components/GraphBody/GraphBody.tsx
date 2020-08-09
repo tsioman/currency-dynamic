@@ -12,6 +12,12 @@ export class GraphBody extends React.Component<IGraphBody> {
   constructor(props: IGraphBody) {
     super(props);
   }
+  shouldComponentUpdate(nextProps: IGraphBody) {
+    return (
+      this.props.area.height !== nextProps.area.height ||
+      this.props.area.width !== nextProps.area.width
+    );
+  }
   render() {
     const { area, xStep = 70, yStep = 70 } = this.props;
     let grid: JSX.Element[] = [];

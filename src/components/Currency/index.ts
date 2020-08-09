@@ -1,6 +1,6 @@
 import { GraphDataType } from "../../types";
 import { http } from "../../api/index";
-
+import {AreaType} from "../../types";
 export type currencyAvaiableType = "RUB" | "USD";
 export interface IRates {
   [key: string]: { [key in currencyAvaiableType]: number };
@@ -20,11 +20,12 @@ export const getCurrency = http<ICurrencyExchange>(
 
 export const convertCurrencyToGraph = (
   rates: IRates,
-  currency: currencyAvaiableType
+  currency: currencyAvaiableType,
+  area: AreaType
 ): GraphDataType => {
   const data: GraphDataType = [];
   let i = 0; 
-  let multiplier = 630 / Object.keys(rates).length
+  let multiplier = area.width / Object.keys(rates).length
   for (let key in rates) {
     data.push([i++ * multiplier, rates[key][currency]+3]);
   }

@@ -1,7 +1,13 @@
 import React from "react";
 import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
-
+import {
+  getCurrency,
+  convertCurrencyToGraph,
+  ICurrencyExchange,
+  IRates,
+  currencyAvaiableType,
+} from "../components/Currency/index";
 import { InitialConfigType, ColorSetType, GraphDataType } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
@@ -9,6 +15,7 @@ interface IAppProps {
 interface IAppState {
   color: ColorSetType;
   graph: GraphDataType;
+  currency: currencyAvaiableType;
 }
 
 export class App extends React.Component<IAppProps, IAppState> {
@@ -17,8 +24,19 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.state = {
       color: this.props.initial.color,
       graph: this.props.initial.graph,
+      currency: "RUB",
     };
     this.onClick = this.onClick.bind(this);
+  }
+  componentDidMount() {
+    getCurrency.then((data: ICurrencyExchange) => {
+      this.setState({
+        graph: convertCurrencyToGraph(data.rates, this.state.currency, {
+          width: this.props.initial.area.width,
+          height: this.props.initial.area.height,
+        }),
+      });
+    });
   }
   onClick(color: ColorSetType) {
     this.setState({ color });
