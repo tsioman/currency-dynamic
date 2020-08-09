@@ -5,6 +5,7 @@ type PathType = {
   color: string;
   strokeWidth: number;
   coords: ISVGPath;
+  className?: string;
 };
 
 export interface ISVGPath {
@@ -23,6 +24,17 @@ const toSVGCoordinates = ({ offset, multiplier, data }: ISVGPath): string => {
   return d.concat(collection).join(" ");
 };
 
-export const SVGPath: React.FC<PathType> = ({ color, strokeWidth, coords}) => (
-  <path d={toSVGCoordinates(coords)} stroke={color} strokeWidth={strokeWidth} fill="none"></path>
+export const SVGPath: React.FC<PathType> = ({
+  color,
+  strokeWidth,
+  coords,
+  className,
+}) => (
+  <path
+    d={toSVGCoordinates(coords)}
+    stroke={color}
+    strokeWidth={strokeWidth}
+    className={className}
+    fill="none"
+  ></path>
 );
