@@ -21,7 +21,7 @@ describe("Graph render check", () => {
       data={[[20, 40]]}
     />)
     expect(
-      wrapper.children().render().attr("d")
+      wrapper.children().find('.graphic').render().attr("d")
     ).toBe("M 0 0 L 20 40")
   })
   it('Graph with init param data=[[2,4],[3,4]] with offset x = 0, y = 0 has coords="M 0 0 L 20 40 L 30 40"', () => {
@@ -30,7 +30,7 @@ describe("Graph render check", () => {
       data={[[20, 40], [30, 40]]}
     />)
     expect(
-      wrapper.children().render().attr("d")
+      wrapper.children().find('.graphic').render().attr("d")
     ).toBe("M 0 0 L 20 40 L 30 40")
   })
 

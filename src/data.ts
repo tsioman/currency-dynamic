@@ -10,8 +10,11 @@ export const InitialConfig: InitialConfigType = Object.freeze({
     [18, 5],
   ],
   colorSet: ["red", "green", "blue", "violet"],
+  area: {
+    width: 600,
+    height: 300,
+  },
 });
-
 
 export const stableGraph: GraphDataType = [
   [1, 3],

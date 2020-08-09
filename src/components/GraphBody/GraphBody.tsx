@@ -1,38 +1,48 @@
 import React from "react";
 import { SVGPath } from "../SVGPath/SVGPath";
+import { AreaType } from "../../types";
 
 interface IGraphBody {
-  area: { x: number; y: number };
+  area: AreaType;
   xStep?: number;
   yStep?: number;
 }
 
-export const GraphBody: React.FC<IGraphBody> = ({
-  area,
-  xStep = 70,
-  yStep = 70,
-}) => {
-  let rows: JSX.Element[] = [],
-    columns: JSX.Element[] = [];
-  for (let i = 0; i <= area.y; i = i + yStep) {
-    rows.push(
-      <SVGPath
-        key={i}
-        color="grey"
-        strokeWidth={1}
-        coords={{ offset: { x: 0, y: i }, multiplier: 1, data: [[area.x, i]] }}
-      />
-    );
+export class GraphBody extends React.Component<IGraphBody> {
+  constructor(props: IGraphBody) {
+    super(props);
   }
-  for (let i = 0; i <= area.x; i = i + xStep) {
-    columns.push(
-      <SVGPath
-        key={i}
-        color="grey"
-        strokeWidth={1}
-        coords={{ offset: { x: i, y: 0 }, multiplier: 1, data: [[i, area.y]] }}
-      />
-    );
+  render() {
+    const { area, xStep = 70, yStep = 70 } = this.props;
+    let grid: JSX.Element[] = [];
+    for (let i = 0; i <= area.height; i = i + yStep) {
+      grid.push(
+        <SVGPath
+          key={`height_${i}`}
+          color="grey"
+          strokeWidth={1}
+          coords={{
+            offset: { x: 0, y: i },
+            multiplier: 1,
+            data: [[area.width, i]],
+          }}
+        />
+      );
+    }
+    for (let i = 0; i <= area.width; i = i + xStep) {
+      grid.push(
+        <SVGPath
+          key={`width_${i}`}
+          color="grey"
+          strokeWidth={1}
+          coords={{
+            offset: { x: i, y: 0 },
+            multiplier: 1,
+            data: [[i, area.height]],
+          }}
+        />
+      );
+    }
+    return grid;
   }
-  return <>{rows}{columns}</>;
-};
+}

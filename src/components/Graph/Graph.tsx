@@ -10,17 +10,26 @@ interface IGraphProps {
     width: number;
     height: number;
     color: ColorSetType;
+    multiplier: number;
   };
 }
 
-export const Graph: React.FC<IGraphProps> = ({ data, options }) => (
-  <svg width={options.width} height={options.height}>
-    <Axis x={options.width} y={options.height} />
-    <GraphBody area={{x:options.width, y:options.height}} />
-    <SVGPath
-      color={options.color}
-      strokeWidth={3}
-      coords={{ offset: { x: 0, y: 0 }, multiplier: 5, data }}
-    />
-  </svg>
-);
+export const Graph: React.FC<IGraphProps> = ({ data, options }) => {
+  const { width, height, multiplier = 1, color } = options;
+  return (
+    <svg width={width} height={height}>
+      <Axis x={width} y={height} />
+      <GraphBody area={{ width: width, height: height }} />
+      <SVGPath
+        className="graphic"
+        color={color}
+        strokeWidth={3}
+        coords={{
+          offset: { x: 0, y: 0 },
+          multiplier: multiplier,
+          data,
+        }}
+      />
+    </svg>
+  );
+};
