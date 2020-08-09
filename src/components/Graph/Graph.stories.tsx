@@ -32,12 +32,7 @@ const graphGroupId = "Graph Parameters";
 
 export const GraphBody: React.FC<{}> = () => (
   <Graph
-    color={value}
-    offset={{
-      x: number("offest X:", 10, undefined, graphGroupId),
-      y: number("offest Y:", 10, undefined, graphGroupId),
-    }}
-    multiplier={number("Multiplier", 5, undefined, graphGroupId)}
+    options={{width: 600, height: 300, color: value}}
     data={InitialConfig.graph}
   />
 );
