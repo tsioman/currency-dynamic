@@ -56,7 +56,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     let buttonKey = 1;
     return (
       <div>
-        <Graph data={this.state.graph} options={{width: 300, height: 300, color: this.state.color}}/>
+        <Graph data={this.state.graph} options={{width: 600, height: 300, color: this.state.color}}/>
         <div className="controls">
           {this.props.initial.colorSet.map((color) => (
             <Button

@@ -14,10 +14,10 @@ export interface ISVGPath {
 }
 
 const toSVGCoordinates = ({ offset, multiplier, data }: ISVGPath): string => {
-  const d = [`M ${offset.x} ${offset.y}`];
+  const d = [`M ${offset.x * multiplier} ${offset.y * multiplier}`];
   const collection = data.map((section): string => {
-    const xSection = offset.x + section[0] * multiplier;
-    const ySection = offset.y + section[1] * multiplier;
+    const xSection = section[0] * multiplier;
+    const ySection = section[1] * multiplier;
     return `L ${xSection} ${ySection}`;
   });
   return d.concat(collection).join(" ");

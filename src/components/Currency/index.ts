@@ -26,7 +26,6 @@ export const convertCurrencyToGraph = (
   let i = 0; 
   let multiplier = 630 / Object.keys(rates).length
   for (let key in rates) {
-    console.log(rates[key][currency]);
     data.push([i++ * multiplier, rates[key][currency]+3]);
   }
   return data;

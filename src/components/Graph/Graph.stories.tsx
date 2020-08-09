@@ -32,7 +32,7 @@ const graphGroupId = "Graph Parameters";
 
 export const GraphBody: React.FC<{}> = () => (
   <Graph
-    options={{width: 300, height: 300, color: value}}
+    options={{width: 600, height: 300, color: value}}
     data={InitialConfig.graph}
   />
 );
