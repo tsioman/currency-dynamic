@@ -7,7 +7,7 @@ import {
   ICurrencyExchange,
   IRates,
   currencyAvaiableType,
-} from "../components/Currency/index";
+} from "../services/Currency";
 import { InitialConfigType, ColorSetType, GraphDataType } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
@@ -28,19 +28,20 @@ export class App extends React.Component<IAppProps, IAppState> {
     };
     this.onClick = this.onClick.bind(this);
   }
+
   componentDidMount() {
-    getCurrency.then((data: ICurrencyExchange) => {
+    const { area } = this.props.initial;
+    getCurrency(this.state.currency).then((data: ICurrencyExchange) => {
       this.setState({
-        graph: convertCurrencyToGraph(data.rates, this.state.currency, {
-          width: this.props.initial.area.width,
-          height: this.props.initial.area.height,
-        }),
+        graph: convertCurrencyToGraph(data.rates, this.state.currency, area),
       });
     });
   }
+
   onClick(color: ColorSetType) {
     this.setState({ color });
   }
+
   render() {
     let buttonKey = 1;
     const { area } = this.props.initial;
@@ -52,7 +53,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             width: area.width,
             height: area.height,
             color: this.state.color,
-            multiplier: 10
+            multiplier: 1,
           }}
         />
         <div className="controls">

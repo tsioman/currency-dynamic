@@ -9,7 +9,7 @@ export const InitialConfig: InitialConfigType = Object.freeze({
     [4, 16],
     [18, 5],
   ],
-  colorSet: ["red", "green", "blue", "violet"],
+  colorSet: ["red", "green"],
   area: {
     width: 600,
     height: 300,
