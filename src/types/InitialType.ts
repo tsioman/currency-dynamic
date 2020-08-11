@@ -1,8 +1,9 @@
-import { GraphDataType, ColorSetType, AreaType } from "../types/";
+import { GraphDataType, ColorSetType, AreaType, CurrencyAvaiableType } from "../types/";
 
 export type InitialConfigType = {
   color: ColorSetType;
   graph: GraphDataType;
   colorSet: ColorSetType[];
   area: AreaType;
+  currency: CurrencyAvaiableType;
 };

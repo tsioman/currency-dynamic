@@ -1,9 +1,8 @@
-import { GraphDataType, AreaType } from "../../types";
+import { GraphDataType, AreaType, CurrencyAvaiableType } from "../../types";
 import { http } from "../../api/index";
 
-export type currencyAvaiableType = "RUB" | "USD";
 export interface IRates {
-  [key: string]: { [key in currencyAvaiableType]: number };
+  [key: string]: { [key in CurrencyAvaiableType]: number };
 }
 export interface ICurrencyExchange {
   rates: IRates;
@@ -12,7 +11,7 @@ export interface ICurrencyExchange {
   end_at: string;
 }
 
-export const getCurrency = (currency: currencyAvaiableType) =>
+export const getCurrency = (currency: CurrencyAvaiableType) =>
   http<ICurrencyExchange>(
     `https://api.exchangeratesapi.io/history?start_at=2020-07-01&end_at=2020-08-10&symbols=${currency}`
   );
@@ -22,7 +21,7 @@ const normalize = (value: number, min: number, max: number) =>
 
 const ratesToData = (
   rates: IRates,
-  currency: currencyAvaiableType
+  currency: CurrencyAvaiableType
 ): number[] => {
   const data = [];
   for (let key in rates) {
@@ -33,7 +32,7 @@ const ratesToData = (
 
 export const convertCurrencyToGraph = (
   rates: IRates,
-  currency: currencyAvaiableType,
+  currency: CurrencyAvaiableType,
   area: AreaType
 ) => {
   const data = ratesToData(rates, currency);

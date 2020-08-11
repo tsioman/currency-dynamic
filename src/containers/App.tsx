@@ -5,19 +5,21 @@ import {
   getCurrency,
   convertCurrencyToGraph,
   ICurrencyExchange,
-  IRates,
-  currencyAvaiableType,
 } from "../services/Currency";
-import { InitialConfigType, ColorSetType, GraphDataType } from "../types";
+import {
+  InitialConfigType,
+  ColorSetType,
+  GraphDataType,
+  CurrencyAvaiableType,
+} from "../types";
 interface IAppProps {
   initial: InitialConfigType;
 }
 interface IAppState {
   color: ColorSetType;
   graph: GraphDataType;
-  currency: currencyAvaiableType;
+  currency: CurrencyAvaiableType;
 }
-
 export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
@@ -30,16 +32,37 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   componentDidMount() {
-    const { area } = this.props.initial;
     getCurrency(this.state.currency).then((data: ICurrencyExchange) => {
       this.setState({
-        graph: convertCurrencyToGraph(data.rates, this.state.currency, area),
+        graph: convertCurrencyToGraph(
+          data.rates,
+          this.state.currency,
+          this.props.initial.area
+        ),
       });
     });
   }
 
-  onClick(color: ColorSetType) {
-    this.setState({ color });
+  shouldComponentUpdate(nextProps: IAppProps, nextState: IAppState) {
+    return (
+      nextState.currency !== this.state.currency
+    );
+  }
+
+  componentDidUpdate() {
+    getCurrency(this.state.currency).then((data: ICurrencyExchange) => {
+      this.setState({
+        graph: convertCurrencyToGraph(
+          data.rates,
+          this.state.currency,
+          this.props.initial.area
+        ),
+      });
+    });
+  }
+
+  onClick(currency: CurrencyAvaiableType) {
+    this.setState({ currency });
   }
 
   render() {
@@ -57,15 +80,21 @@ export class App extends React.Component<IAppProps, IAppState> {
           }}
         />
         <div className="controls">
-          {this.props.initial.colorSet.map((color) => (
-            <Button
-              color={color}
-              key={buttonKey++}
-              onClick={() => this.onClick(color)}
-              textButton={color}
-              isActive={this.state.color === color}
-            />
-          ))}
+          <Button
+            color={"red"}
+            key={buttonKey++}
+            onClick={() => this.onClick("RUB")}
+            textButton="RUB"
+            isActive={this.state.currency === "RUB"}
+          />
+
+          <Button
+            color={"green"}
+            key={buttonKey++}
+            onClick={() => this.onClick("USD")}
+            textButton="USD"
+            isActive={this.state.currency === "USD"}
+          />
         </div>
       </div>
     );
