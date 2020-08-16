@@ -1,7 +1,7 @@
 import { InitialConfigType, GraphDataType } from "./types/";
 
 export const InitialConfig: InitialConfigType = Object.freeze({
-  color: "blue",
+  color: "red",
   graph: [],
   colorSet: ["red", "green"],
   area: {

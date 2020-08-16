@@ -1,6 +1,7 @@
 import React from "react";
 import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
+
 import {
   getCurrency,
   convertCurrencyToGraph,
@@ -28,41 +29,38 @@ export class App extends React.Component<IAppProps, IAppState> {
       graph: this.props.initial.graph,
       currency: "RUB",
     };
-    this.onClick = this.onClick.bind(this);
+    this.setCurrency = this.setCurrency.bind(this);
   }
 
   componentDidMount() {
-    getCurrency(this.state.currency).then((data: ICurrencyExchange) => {
-      this.setState({
-        graph: convertCurrencyToGraph(
+    this.updateCurrency();
+  }
+
+  componentDidUpdate(prevProps: IAppProps, prevState: IAppState) {
+    if (this.state.currency !== prevState.currency) {
+      this.updateCurrency();
+    }
+  }
+
+  updateCurrency() {
+    getCurrency(this.state.currency)
+      .then((data: ICurrencyExchange) => {
+        const graph = convertCurrencyToGraph(
           data.rates,
           this.state.currency,
           this.props.initial.area
-        ),
-      });
-    });
+        );
+        this.setState({ graph });
+      })
+      .catch((e) =>
+        this.setState(() => {
+          throw new Error(e);
+        })
+      );
   }
 
-  shouldComponentUpdate(nextProps: IAppProps, nextState: IAppState) {
-    return (
-      nextState.currency !== this.state.currency
-    );
-  }
-
-  componentDidUpdate() {
-    getCurrency(this.state.currency).then((data: ICurrencyExchange) => {
-      this.setState({
-        graph: convertCurrencyToGraph(
-          data.rates,
-          this.state.currency,
-          this.props.initial.area
-        ),
-      });
-    });
-  }
-
-  onClick(currency: CurrencyAvaiableType) {
-    this.setState({ currency });
+  setCurrency(currency: CurrencyAvaiableType, color: ColorSetType) {
+    this.setState({ currency, color });
   }
 
   render() {
@@ -83,7 +81,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           <Button
             color={"red"}
             key={buttonKey++}
-            onClick={() => this.onClick("RUB")}
+            onClick={() => this.setCurrency("RUB", "red")}
             textButton="RUB"
             isActive={this.state.currency === "RUB"}
           />
@@ -91,7 +89,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           <Button
             color={"green"}
             key={buttonKey++}
-            onClick={() => this.onClick("USD")}
+            onClick={() => this.setCurrency("USD", "green")}
             textButton="USD"
             isActive={this.state.currency === "USD"}
           />

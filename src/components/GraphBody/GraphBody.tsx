@@ -24,6 +24,7 @@ export class GraphBody extends React.Component<IGraphBody> {
     for (let i = 0; i <= area.height; i = i + yStep) {
       grid.push(
         <SVGPath
+          className="horizontal-lines"
           key={`height_${i}`}
           color="grey"
           strokeWidth={1}
@@ -38,6 +39,7 @@ export class GraphBody extends React.Component<IGraphBody> {
     for (let i = 0; i <= area.width; i = i + xStep) {
       grid.push(
         <SVGPath
+          className="vertical-lines"
           key={`width_${i}`}
           color="grey"
           strokeWidth={1}

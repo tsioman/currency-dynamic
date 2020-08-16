@@ -7,7 +7,6 @@ const onClick = jest.fn();
 describe("Button render check", () => {
   const buttonWrapper = mount(<Button color="red" textButton="red" onClick={onClick}></Button>);
   it("Default red button render", () => {
-
     expect(buttonWrapper.render()).toMatchSnapshot(
       '<button class="button" style="color: red;">red</button>');
   });
