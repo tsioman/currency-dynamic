@@ -12,12 +12,14 @@ describe("GraphBody renders checks", () => {
   it("First and last horiziontal lines grid with y-step=50 for height 200 is correct", () => {
     const lines = graphBodyWrapper.find('path').find('.horizontal-lines');
     expect(lines.at(0).render().attr('d')).toBe(`M 0 0 L 500 0`)
+    expect(lines.at(1).render().attr('d')).toBe(`M 0 50 L 500 50`)
     expect(lines.at(lines.length - 1).render().attr('d')).toBe(`M 0 200 L 500 200`)
   });
 
   it("First and last vertical lines grid with x-step=100 for width 500 is correct", () => {
     const lines = graphBodyWrapper.find('path').find('.vertical-lines');
     expect(lines.at(0).render().attr('d')).toBe(`M 0 0 L 0 200`)
+    expect(lines.at(1).render().attr('d')).toBe(`M 100 0 L 100 200`)
     expect(lines.at(lines.length - 1).render().attr('d')).toBe(`M 500 0 L 500 200`)
   });
 

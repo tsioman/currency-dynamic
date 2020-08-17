@@ -2,7 +2,7 @@ import { GraphDataType, AreaType, CurrencyAvaiableType } from "../../types";
 import { http } from "../../api/index";
 
 export interface IRates {
-  [key: string]: { [key in CurrencyAvaiableType]: number };
+  [name: string]: { [key: string]: number };
 }
 export interface ICurrencyExchange {
   rates: IRates;
@@ -16,10 +16,10 @@ export const getCurrency = (currency: CurrencyAvaiableType) =>
     `https://api.exchangeratesapi.io/history?start_at=2020-07-01&end_at=2020-08-10&symbols=${currency}`
   );
 
-const normalize = (value: number, min: number, max: number) =>
-  (value - min) / (max - min);
+export const normalize = (value: number, min: number, max: number) =>
+  Math.abs((value - min) / (max - min));
 
-const ratesToData = (
+export const ratesToData = (
   rates: IRates,
   currency: CurrencyAvaiableType
 ): number[] => {
