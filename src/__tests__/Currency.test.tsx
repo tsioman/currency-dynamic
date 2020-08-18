@@ -1,14 +1,12 @@
+import { responseRUB, responseUSD } from "../__tests__/__mocks__/rates";
 import {
-  getCurrency,
   ratesToData,
   dataToGraph,
   normalize,
   convertCurrencyToGraph,
 } from "../services/Currency";
-import { responseRUB, responseUSD } from "../__tests__/__mocks__/rates";
 
 describe("Currency tests cases", () => {
-  
   it("Convert raw data for RUB rates working corect", () => {
     const expectedData = [81.1888, 79.6793];
     expect(ratesToData(responseRUB.rates, "RUB")).toEqual(
