@@ -1,7 +1,7 @@
 import React from "react";
 import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
-
+import { RequestLog } from "../components/RequsetLog/RequestLog";
 import {
   getCurrency,
   convertCurrencyToGraph,
@@ -20,6 +20,7 @@ interface IAppState {
   color: ColorSetType;
   graph: GraphDataType;
   currency: CurrencyAvaiableType;
+  timeCall: string | null;
 }
 export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -28,11 +29,16 @@ export class App extends React.Component<IAppProps, IAppState> {
       color: this.props.initial.color,
       graph: this.props.initial.graph,
       currency: "RUB",
+      timeCall: null,
     };
     this.setCurrency = this.setCurrency.bind(this);
+    this.updateTimeLog = this.updateTimeLog.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener("APICall", (event: CustomEventInit) =>
+      this.updateTimeLog(event.detail())
+    );
     this.updateCurrency();
   }
 
@@ -40,6 +46,16 @@ export class App extends React.Component<IAppProps, IAppState> {
     if (this.state.currency !== prevState.currency) {
       this.updateCurrency();
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("APICall", (event: CustomEventInit) =>
+      this.updateTimeLog(event.detail())
+    );
+  }
+
+  updateTimeLog(timeCall: string) {
+    this.setState({ timeCall });
   }
 
   updateCurrency() {
@@ -78,21 +94,16 @@ export class App extends React.Component<IAppProps, IAppState> {
           }}
         />
         <div className="controls">
-          <Button
-            color={"red"}
-            key={buttonKey++}
-            onClick={() => this.setCurrency("RUB", "red")}
-            textButton="RUB"
-            isActive={this.state.currency === "RUB"}
-          />
-
-          <Button
-            color={"green"}
-            key={buttonKey++}
-            onClick={() => this.setCurrency("USD", "green")}
-            textButton="USD"
-            isActive={this.state.currency === "USD"}
-          />
+          {this.props.initial.buttons.map((button) => (
+            <Button
+              color={button.color}
+              key={buttonKey++}
+              onClick={() => this.setCurrency(button.value, button.color)}
+              textButton={button.value}
+              isActive={this.state.currency === button.value}
+            />
+          ))}
+          {this.state.timeCall && <RequestLog request={this.state.timeCall} />}
         </div>
       </div>
     );

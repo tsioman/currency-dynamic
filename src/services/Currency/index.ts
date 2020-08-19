@@ -1,6 +1,12 @@
 import { GraphDataType, AreaType, CurrencyAvaiableType } from "../../types";
 import { http } from "../../api/index";
 
+const eventAPICall = new CustomEvent("APICall", {
+  detail: () => {
+    const time = new Date();
+    return `API call at: ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
+  }
+});
 export interface IRates {
   [name: string]: { [key: string]: number };
 }
@@ -11,11 +17,12 @@ export interface ICurrencyExchange {
   end_at: string;
 }
 
-export const getCurrency = (currency: CurrencyAvaiableType) =>
-  http<ICurrencyExchange>(
+export const getCurrency = (currency: CurrencyAvaiableType) => {
+  window.dispatchEvent(eventAPICall);
+  return http<ICurrencyExchange>(
     `https://api.exchangeratesapi.io/history?start_at=2020-07-01&end_at=2020-08-10&symbols=${currency}`
   );
-
+};
 export const normalize = (value: number, min: number, max: number) =>
   Math.abs((value - min) / (max - min));
 
