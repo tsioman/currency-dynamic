@@ -1,15 +1,25 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { Button } from "../components/Button/Button";
+import toJson from "enzyme-to-json";
 
 const onClick = jest.fn();
 
 describe("Button render check", () => {
-  const buttonWrapper = mount(<Button color="red" textButton="red" onClick={onClick}></Button>);
+  const buttonWrapper = shallow(
+    <Button color="red" textButton="red" onClick={onClick}></Button>
+  );
   it("Default red button render", () => {
-
-    expect(buttonWrapper.render()).toMatchSnapshot(
-      '<button class="button" style="color: red;">red</button>');
+    expect(toJson(buttonWrapper.render())).toMatchInlineSnapshot(
+      `
+      <button
+        class="button"
+        style="color:red"
+      >
+        red
+      </button>
+    `
+    );
   });
   it("Button on click event work", () => {
     buttonWrapper.simulate("click");

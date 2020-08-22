@@ -3,3 +3,4 @@ export { LineType } from "./Line";
 export { ColorSetType } from "./ColorSet";
 export { InitialConfigType } from "./InitialType";
 export { AreaType } from "./Area";
+export { CurrencyAvaiableType } from "./CurrecnyType";

@@ -10,7 +10,7 @@ interface IGraphProps {
     width: number;
     height: number;
     color: ColorSetType;
-    multiplier: number;
+    multiplier?: number;
   };
 }
 

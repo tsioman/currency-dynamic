@@ -1,19 +1,17 @@
 import { InitialConfigType, GraphDataType } from "./types/";
 
 export const InitialConfig: InitialConfigType = Object.freeze({
-  color: "blue",
-  graph: [
-    [1, 3],
-    [2, 5],
-    [3, 2],
-    [4, 16],
-    [18, 5],
+  color: "red",
+  graph: [],
+  buttons: [
+    { value: "RUB", color: "red" },
+    { value: "USD", color: "green" },
   ],
-  colorSet: ["red", "green", "blue", "violet"],
   area: {
     width: 600,
     height: 300,
   },
+  currency: "RUB",
 });
 
 export const stableGraph: GraphDataType = [
