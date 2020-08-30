@@ -10,33 +10,20 @@ describe("Button render check", () => {
     <Button color="red" textButton="red" onClick={onClick}></Button>
   );
   it("Default red button render", () => {
-    expect(toJson(buttonWrapper.render())).toMatchInlineSnapshot(
-      `
+    expect(toJson(buttonWrapper.render())).toMatchInlineSnapshot(`
       <button
-        class="button"
-        style="color:red"
+        class="css-g6msvj"
+        color="red"
       >
         red
       </button>
-    `
-    );
+    `);
   });
   it("Button on click event work", () => {
     buttonWrapper.simulate("click");
     expect(onClick).toHaveBeenCalled();
   });
-  it("Active red button has class button--active", () => {
-    const wrapper = mount(
-      <Button
-        color="red"
-        textButton="red"
-        onClick={onClick}
-        isActive={true}
-      ></Button>
-    );
-    expect(wrapper.find(".button").hasClass("button--active")).toBe(true);
-  });
-
+ 
   it("Button with color parameter 'green' has color 'green' ", () => {
     const wrapper = mount(
       <Button

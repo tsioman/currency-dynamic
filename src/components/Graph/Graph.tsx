@@ -15,7 +15,6 @@ interface IGraphProps {
 
 export const Graph: React.FC<IGraphProps> = ({ data, options }) => {
   const { area, multiplier = 1, color } = options;
-  console.log (area)
   return (
     <svg width={area.width} height={area.height}>
       <Axis x={area.width} y={area.height} />

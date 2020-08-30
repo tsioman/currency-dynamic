@@ -2,7 +2,7 @@ import React from "react";
 import { InitialConfig } from "../data";
 import { App } from "../containers/App";
 import { Graph } from "../components/Graph/Graph";
-
+import { formatDate } from "../util/";
 import { mount } from "enzyme";
 import { responseRUB } from "../__tests__/__mocks__/rates";
 import { getCurrency } from "../services/Currency";
@@ -19,21 +19,33 @@ describe("Integration tests cases", () => {
       .fn()
       .mockImplementation(() => Promise.resolve(responseRUB));
   });
+
   it("fetch data from API is ok", async () => {
-    expect(await getCurrency("RUB")).toEqual(responseRUB);
+    expect(
+      await getCurrency("RUB", {
+        from: "2020-07-01",
+        to: formatDate(),
+      })
+    ).toEqual(responseRUB);
   });
   const appComponent = mount(<App initial={InitialConfig} />);
-  it("render App with initial data is ok", () => {
-    expect(appComponent.render()).toMatchSnapshot();
-  });
+
   it("first redner and initial state test [constructor and initial state test]", () => {
-    expect(appComponent.find(".button--active").text()).toBe("RUB");
+    expect(
+      appComponent
+        .findWhere((n) => n.name() === "Button" && n.prop("isActive") === true)
+        .text()
+    ).toBe("RUB");
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(
       `Array []`
     );
   });
   it("first redner and initial state test [componentDidMount]", () => {
-    expect(appComponent.find(".button--active").text()).toBe("RUB");
+    expect(
+      appComponent
+        .findWhere((n) => n.name() === "Button" && n.prop("isActive") === true)
+        .text()
+    ).toBe("RUB");
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(
       `Array []`
     );
@@ -42,9 +54,7 @@ describe("Integration tests cases", () => {
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(
       `Array []`
     );
-    expect(
-      appComponent.find("button").not(".button--active").simulate("click")
-    );
+    expect(appComponent.find("button").at(1).simulate("click"));
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(`
       Array [
         Array [
@@ -57,6 +67,10 @@ describe("Integration tests cases", () => {
         ],
       ]
     `);
-    expect(appComponent.find(".button--active").text()).toBe("USD");
+    expect(
+      appComponent
+        .findWhere((n) => n.name() === "Button" && n.prop("isActive") === true)
+        .text()
+    ).toBe("USD");
   });
 });
