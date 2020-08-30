@@ -12,7 +12,7 @@ describe("Button render check", () => {
   it("Default red button render", () => {
     expect(toJson(buttonWrapper.render())).toMatchInlineSnapshot(`
       <button
-        class="css-g6msvj"
+        class="css-1fe6wmf"
         color="red"
       >
         red
@@ -23,7 +23,7 @@ describe("Button render check", () => {
     buttonWrapper.simulate("click");
     expect(onClick).toHaveBeenCalled();
   });
- 
+
   it("Button with color parameter 'green' has color 'green' ", () => {
     const wrapper = mount(
       <Button

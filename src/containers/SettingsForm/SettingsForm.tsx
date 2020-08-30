@@ -1,6 +1,7 @@
 import React from "react";
+import { Button } from "../../components/Button/Button";
+import { Input } from "../../components/Input/Input";
 import { AreaType, DatePeriodType } from "../../types";
-
 interface ISettingsFormProps {
   onSubmit: (settings: ISettingsFormState) => void;
   area: AreaType;
@@ -12,7 +13,7 @@ interface ISettingsFormState {
   period: DatePeriodType;
 }
 
-export class Settings extends React.Component<
+export class Settings extends React.PureComponent<
   ISettingsFormProps,
   ISettingsFormState
 > {
@@ -51,43 +52,39 @@ export class Settings extends React.Component<
       <form onSubmit={this.formHandle}>
         <fieldset>
           <legend>Settings</legend>
-          <label>
-            Date from:
-            <input
-              type="text"
-              placeholder="YYYY-MM-DD"
-              value={this.state.period.from}
-              onChange={this.changePeriod("from")}
-            />
-          </label>
-          <label>
-            Date to:
-            <input
-              type="text"
-              placeholder="YYYY-MM-DD"
-              value={this.state.period.to}
-              onChange={this.changePeriod("to")}
-            />
-          </label>
-          <label>
-            Width:
-            <input
-              type="number"
-              placeholder="px"
-              value={this.state.area.width}
-              onChange={this.changeArea("width")}
-            />
-          </label>
-          <label>
-            Height:
-            <input
-              type="number"
-              placeholder="px"
-              value={this.state.area.height}
-              onChange={this.changeArea("height")}
-            />
-          </label>
-          <button>Apply Settings</button>
+          <Input
+            labelText="Date from:"
+            type="text"
+            placeholder="YYYY-MM-DD"
+            value={this.state.period.from}
+            onChange={this.changePeriod("from")}
+          />
+          <Input
+            labelText="Date to:"
+            type="text"
+            placeholder="YYYY-MM-DD"
+            value={this.state.period.to}
+            onChange={this.changePeriod("to")}
+          />
+          <Input
+            labelText="Width:"
+            type="number"
+            placeholder="px"
+            value={this.state.area.width}
+            onChange={this.changeArea("width")}
+          />
+          <Input
+            labelText="Height:"
+            type="number"
+            placeholder="px"
+            value={this.state.area.height}
+            onChange={this.changeArea("height")}
+          />
+          <Button
+            isFormButton={true}
+            textButton="Apply"
+            onClick={() => this.formHandle}
+          />
         </fieldset>
       </form>
     );
