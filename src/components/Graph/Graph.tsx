@@ -12,7 +12,7 @@ interface IGraphProps {
     color: ColorSetType;
     multiplier?: number;
   };
-  className: string;
+  className?: string;
 }
 
 const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
@@ -40,9 +40,8 @@ const rotate = keyframes`
 const AnimatedGraph = styled(Graphic)`
   stroke-dashoffset: 5500;
   stroke-dasharray: 5500;
-  animation-play-state: paused;
-  animation: ${rotate} 15s forwards ease-out; 
-
+  animation: ${rotate} 3s forwards ease-out; 
+  animation-play-state: play;
 `;
 
 export const Graph: React.FC<IGraphProps> = ({ ...props }) => {

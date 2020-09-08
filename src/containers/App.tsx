@@ -4,6 +4,7 @@ import { Button } from "../components/Button/Button";
 import { RequestLog } from "../components/RequsetLog/RequestLog";
 import { Settings } from "../containers/SettingsForm/SettingsForm";
 import { formatDate } from "../util";
+import { Controls } from "../containers/Controls/Controls";
 
 import {
   getCurrency,
@@ -124,6 +125,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           }}
         />
         <div className="controls">
+          <Controls />
           {this.props.initial.buttons.map((button) => (
             <Button
               color={button.color}
