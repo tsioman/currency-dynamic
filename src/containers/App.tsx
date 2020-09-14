@@ -4,7 +4,7 @@ import { Button } from "../components/Button/Button";
 import { RequestLog } from "../components/RequsetLog/RequestLog";
 import { Settings } from "../containers/SettingsForm/SettingsForm";
 import { formatDate } from "../util";
-import { Controls } from "../containers/Controls/Controls";
+import { AnimationControls } from "./AnimationControls/AnimationControls";
 
 import {
   getCurrency,
@@ -20,6 +20,8 @@ import {
   CurrencyAvaiableType,
   DatePeriodType,
   AreaType,
+  AnimationStateType,
+  AnimationControl,
 } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
@@ -32,6 +34,7 @@ interface IAppState {
   timeCall: string | null;
   period: DatePeriodType;
   area: AreaType;
+  playState: AnimationStateType;
 }
 export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -47,6 +50,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         from: "2020-07-01",
         to: formatDate(),
       },
+      playState: "stopped",
     };
     this.setCurrency = this.setCurrency.bind(this);
     this.updateTimeLog = this.updateTimeLog.bind(this);
@@ -112,6 +116,12 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
   };
 
+  onAnimationStateChange = (playState: AnimationStateType) => {
+      this.setState({
+      playState: playState,
+    });
+  };
+
   render() {
     let buttonKey = 0;
     return (
@@ -123,9 +133,12 @@ export class App extends React.Component<IAppProps, IAppState> {
             color: this.state.color,
             multiplier: 1,
           }}
+          playState={this.state.playState}
         />
         <div className="controls">
-          <Controls />
+          <AnimationControls
+            onAnimationStateChange={this.onAnimationStateChange}
+          />
           {this.props.initial.buttons.map((button) => (
             <Button
               color={button.color}

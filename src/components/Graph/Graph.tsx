@@ -5,6 +5,8 @@ import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
+import { animationStateType } from "../../containers/AnimationControls/AnimationControls";
+
 interface IGraphProps {
   data: GraphDataType;
   options: {
@@ -12,6 +14,7 @@ interface IGraphProps {
     color: ColorSetType;
     multiplier?: number;
   };
+  playState: animationStateType;
   className?: string;
 }
 
@@ -40,8 +43,8 @@ const rotate = keyframes`
 const AnimatedGraph = styled(Graphic)`
   stroke-dashoffset: 5500;
   stroke-dasharray: 5500;
-  animation: ${rotate} 3s forwards ease-out; 
-  animation-play-state: play;
+  ${(props) => props.playState !== 'sttoped' && `animation: ${rotate} 3s forwards ease-out;`}
+  animation-play-state: ${(props) => props.playState};
 `;
 
 export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
