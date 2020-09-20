@@ -34,8 +34,18 @@ export class AnimationControls extends React.PureComponent<
     this.setState({
       buttonState,
     });
-    const playState = (): AnimationStateType => buttonState === "play" ? "running" : "paused";
-    this.props.onAnimationStateChange(playState);
+    const playState = (): AnimationStateType => {
+      switch(buttonState) {
+        case("play"):
+          return "running";
+        case("pause"):
+          return "paused";
+        default:
+          return "stopped";
+      }
+    } 
+    buttonState === "play" ? "running" : "paused";
+    this.props.onAnimationStateChange(playState());
   };
   render() {
     const buttons: AnimationControl[] = ["play", "pause", "stop"];

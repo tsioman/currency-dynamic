@@ -4,7 +4,7 @@ import { GraphDataType, ColorSetType, AreaType } from "../../types";
 import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/core";
+import { keyframes, css } from "@emotion/core";
 import { animationStateType } from "../../containers/AnimationControls/AnimationControls";
 
 interface IGraphProps {
@@ -25,6 +25,7 @@ const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
       className={className}
       color={color}
       strokeWidth={3}
+      animate={true}
       coords={{
         offset: { x: 0, y: 0 },
         multiplier: multiplier,
@@ -41,9 +42,12 @@ const rotate = keyframes`
 `;
 
 const AnimatedGraph = styled(Graphic)`
-  stroke-dashoffset: 5500;
-  stroke-dasharray: 5500;
-  ${(props) => props.playState !== 'sttoped' && `animation: ${rotate} 3s forwards ease-out;`}
+
+${(props) =>
+  props.playState !== "stopped" &&
+  css`
+    animation: ${rotate} 30s forwards;
+  `}
   animation-play-state: ${(props) => props.playState};
 `;
 
@@ -53,7 +57,7 @@ export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
     <svg width={area.width} height={area.height}>
       <Axis x={area.width} y={area.height} />
       <GraphBody area={area} />
-      <AnimatedGraph {...props} />
+      {props.data.length > 0 && <AnimatedGraph {...props} />}
     </svg>
   );
 };

@@ -117,7 +117,14 @@ export class App extends React.Component<IAppProps, IAppState> {
   };
 
   onAnimationStateChange = (playState: AnimationStateType) => {
-      this.setState({
+    console.log(playState)
+    // if (playState==="stopped") {
+    //   this.setState({
+    //     graphData: [],
+    //     graph: []
+    //   })
+    // }
+    this.setState({
       playState: playState,
     });
   };
