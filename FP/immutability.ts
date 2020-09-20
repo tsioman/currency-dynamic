@@ -52,8 +52,12 @@ export type Team = {
   };
 };
 
-export const originalTeamToExpectedTeam = (originalTeam: Team): Team => {
-  const { captain } = originalTeam;
-  captain.age = 28;
-  return { ...originalTeam, captain };
-};
+export const originalTeamToExpectedTeam = (originalTeam: Team): Team => (
+  {
+    ...originalTeam,
+    captain: {
+      ...originalTeam.captain,
+      age: 28,
+    },
+  }
+);
