@@ -1,11 +1,11 @@
 import React from "react";
 import { SVGPath } from "../SVGPath/SVGPath";
-import { GraphDataType, ColorSetType, AreaType } from "../../types";
+import { GraphDataType, ColorSetType, AreaType, AnimationStateType } from "../../types";
 import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
 import styled from "@emotion/styled";
 import { keyframes, css } from "@emotion/core";
-import { animationStateType } from "../../containers/AnimationControls/AnimationControls";
+
 
 interface IGraphProps {
   data: GraphDataType;
@@ -14,12 +14,15 @@ interface IGraphProps {
     color: ColorSetType;
     multiplier?: number;
   };
-  playState: animationStateType;
+  playState: AnimationStateType;
   className?: string;
 }
 
 const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
   const { multiplier = 1, color } = options;
+  const [x, y] = data[0];
+  const firstGraphPoint = { x, y };
+
   return (
     <SVGPath
       className={className}
@@ -27,7 +30,7 @@ const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
       strokeWidth={3}
       animate={true}
       coords={{
-        offset: { x: 0, y: 0 },
+        offset: firstGraphPoint,
         multiplier: multiplier,
         data,
       }}
@@ -44,8 +47,8 @@ const rotate = keyframes`
 const AnimatedGraph = styled(Graphic)`
 
 ${(props) =>
-  props.playState !== "stopped" &&
-  css`
+    props.playState !== "stopped" &&
+    css`
     animation: ${rotate} 30s forwards;
   `}
   animation-play-state: ${(props) => props.playState};

@@ -21,7 +21,6 @@ import {
   DatePeriodType,
   AreaType,
   AnimationStateType,
-  AnimationControl,
 } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
