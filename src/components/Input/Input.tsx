@@ -17,7 +17,6 @@ const InputStyled = styled.input`
   font-size: 18px;
   padding: 5px 10px;
   flex: 1;
-
 `;
 
 const BaseInput = css`
