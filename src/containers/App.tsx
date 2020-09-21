@@ -116,16 +116,9 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
   };
 
-  onAnimationStateChange = (playState: AnimationStateType) => {
-    console.log(playState)
-    // if (playState==="stopped") {
-    //   this.setState({
-    //     graphData: [],
-    //     graph: []
-    //   })
-    // }
+  onAnimationStateChange = (animationState: AnimationStateType) => {
     this.setState({
-      playState: playState,
+      playState: animationState,
     });
   };
 
@@ -133,6 +126,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     let buttonKey = 0;
     return (
       <div>
+        <h1>Dynamic graph view for selected currency and period </h1>
         <Graph
           data={this.state.graph}
           options={{
@@ -144,6 +138,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         />
         <div className="controls">
           <AnimationControls
+            buttonActiveState="stop"
             onAnimationStateChange={this.onAnimationStateChange}
           />
           {this.props.initial.buttons.map((button) => (
@@ -155,12 +150,12 @@ export class App extends React.Component<IAppProps, IAppState> {
               isActive={this.state.currency === button.value}
             />
           ))}
-          {this.state.timeCall && <RequestLog request={this.state.timeCall} />}
           <Settings
             area={this.state.area}
             period={this.state.period}
             onSubmit={this.onSettingsSubmit}
           />
+          {this.state.timeCall && <RequestLog request={this.state.timeCall} />}
         </div>
       </div>
     );

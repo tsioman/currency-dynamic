@@ -4,12 +4,21 @@ import styled from "@emotion/styled";
 import { AnimationStateType, AnimationControl } from "../../types/";
 
 interface IControlsProps {
-  animationState: AnimationStateType;
-  onAnimationStateChange: (buttonState: AnimationControl) => void;
+  buttonActiveState: AnimationControl;
+  onAnimationStateChange: (buttonState: AnimationStateType) => void;
 }
 
 interface IControlsState {
   buttonState: AnimationControl;
+}
+
+type mapButtonStateType = Record<AnimationControl, AnimationStateType>
+
+const buttons: AnimationControl[] = ["play", "pause", "stop"];
+const mapButtonState: mapButtonStateType = {
+  play: "running",
+  pause: "paused",
+  stop: "stopped"
 }
 
 const ControlsView = styled.div`
@@ -23,32 +32,20 @@ const ControlsLabel = styled.div`
 export class AnimationControls extends React.PureComponent<
   IControlsProps,
   IControlsState
-> {
+  > {
   constructor(props: IControlsProps) {
     super(props);
     this.state = {
-      buttonState: "stop",
+      buttonState: this.props.buttonActiveState,
     };
   }
   setAnimationState = (buttonState: AnimationControl) => {
     this.setState({
       buttonState,
     });
-    const playState = (): AnimationStateType => {
-      switch(buttonState) {
-        case("play"):
-          return "running";
-        case("pause"):
-          return "paused";
-        default:
-          return "stopped";
-      }
-    } 
-    buttonState === "play" ? "running" : "paused";
-    this.props.onAnimationStateChange(playState());
+    this.props.onAnimationStateChange(mapButtonState[buttonState]);
   };
   render() {
-    const buttons: AnimationControl[] = ["play", "pause", "stop"];
     let buttonId = 0;
     return (
       <ControlsView>

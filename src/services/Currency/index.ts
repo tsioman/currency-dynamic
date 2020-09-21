@@ -1,10 +1,16 @@
-import { GraphDataType, AreaType, CurrencyAvaiableType,DatePeriodType } from "../../types";
+import { GraphDataType, AreaType, CurrencyAvaiableType, DatePeriodType } from "../../types";
 import { http } from "../../api/index";
 
 const eventAPICall = new CustomEvent("APICall", {
   detail: () => {
     const time = new Date();
-    return `API call at: ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
+    const [H, M, S] = [
+      time.getHours(), 
+      time.getMinutes(), 
+      time.getSeconds()
+    ].map(unit => `0${unit}`.substr(-2))
+    
+    return `Last API call at: ${H}:${M}:${S}`
   }
 });
 export interface IRates {
