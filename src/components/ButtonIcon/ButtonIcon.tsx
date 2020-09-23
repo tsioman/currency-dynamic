@@ -13,6 +13,8 @@ type ButtonType = ButtonStylesType & {
 };
 
 const BaseButton = css`
+  display: inline-block;
+  vertical-align: middle;
   position: relative;
   border-radius: 4px;
   padding: 7px 15px;

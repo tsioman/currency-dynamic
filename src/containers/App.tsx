@@ -5,6 +5,7 @@ import { RequestLog } from "../components/RequsetLog/RequestLog";
 import { Settings } from "../containers/SettingsForm/SettingsForm";
 import { formatDate } from "../util";
 import { AnimationControls } from "./AnimationControls/AnimationControls";
+import "../css/main.css";
 
 import {
   getCurrency,
@@ -21,6 +22,7 @@ import {
   DatePeriodType,
   AreaType,
   AnimationStateType,
+  AnimationSpeedType
 } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
@@ -34,6 +36,7 @@ interface IAppState {
   period: DatePeriodType;
   area: AreaType;
   playState: AnimationStateType;
+  animationSpeed: AnimationSpeedType;
 }
 export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -50,6 +53,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         to: formatDate(),
       },
       playState: "stopped",
+      animationSpeed: 1
     };
     this.setCurrency = this.setCurrency.bind(this);
     this.updateTimeLog = this.updateTimeLog.bind(this);
@@ -121,6 +125,13 @@ export class App extends React.Component<IAppProps, IAppState> {
     });
   };
 
+  onAnimationSpeedChange = (animationSpeed: AnimationSpeedType) => {
+    console.log (animationSpeed)
+    this.setState({
+      animationSpeed: animationSpeed,
+    });
+  };
+
   render() {
     let buttonKey = 0;
     return (
@@ -134,11 +145,14 @@ export class App extends React.Component<IAppProps, IAppState> {
             multiplier: 1,
           }}
           playState={this.state.playState}
+          speed={this.state.animationSpeed}
         />
         <div className="controls">
           <AnimationControls
+            speed={this.state.animationSpeed}
             buttonActiveState="stop"
             onAnimationStateChange={this.onAnimationStateChange}
+            onAnimationSpeedChange={this.onAnimationSpeedChange}
           />
           {this.props.initial.buttons.map((button) => (
             <Button
