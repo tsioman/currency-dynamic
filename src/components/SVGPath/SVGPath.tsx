@@ -6,7 +6,8 @@ type PathType = {
   strokeWidth: number;
   coords: ISVGPath;
   className?: string;
-  animate?: true;
+  frame?: number;
+  timerId?: NodeJS.Timeout;
 };
 
 export interface ISVGPath {
@@ -30,19 +31,21 @@ export const SVGPath: React.FC<PathType> = ({
   strokeWidth,
   coords,
   className,
-  animate,
+  ...props
 }) => {
+  const animateCallback = (node: SVGElement) => {
+    console.log (props)
+    if (node && props.timerId) {
+      const totalLength = Math.ceil(node.getTotalLength());
+      node.style.strokeDasharray = [length++, totalLength].join(" ");
+    }
+    
+  }
+    
   const ref = useCallback(
-    (node: SVGElement) => {
-      if (node && animate) {
-        const totalLength = Math.ceil(node.getTotalLength());
-        node.style.strokeDashoffset = `${totalLength}`;
-        node.style.strokeDasharray = `${totalLength}`;
-      }
-    },
-    [coords]
+    animateCallback,
+    [props]
   );
-
   return (
     <path
       ref={ref}
