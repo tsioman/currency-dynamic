@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import { ButtonIcon } from "./ButtonIcon";
 import { AnimationControl } from "../../types/";
 
@@ -10,24 +10,32 @@ export default {
 };
 let buttonId = 1;
 const buttons: AnimationControl[] = ["play", "pause", "stop"];
+const onButtonClick = action("Button click");
 
 export const ButtonControl: React.FC<{}> = () => (
   <>
     {buttons.map((button) => (
-      <ButtonIcon
-        key={buttonId++}
-        icon={button}
-        isActive={false}
-        onClick={() => {}}
-      />
-    ))}
-    {buttons.map((button) => (
-      <ButtonIcon
-        key={buttonId++}
-        icon={button}
-        isActive={true}
-        onClick={() => {}}
-      />
+      <>
+        <ButtonIcon
+          key={buttonId++}
+          icon={button}
+          disabled={false}
+          isActive={false}
+          onClick={(e) => {
+            onButtonClick(e);
+          }}
+        />
+
+        <ButtonIcon
+          key={buttonId++}
+          icon={button}
+          disabled={true}
+          isActive={true}
+          onClick={(e) => {
+            onButtonClick(e);
+          }}
+        />
+      </>
     ))}
   </>
 );

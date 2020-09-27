@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 
 type SelectType = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  values: string[] | number[];
   selected: string | number;
+  values: { label: string; value: string | number }[];
 };
 
 const SelectWrapper = styled.select`
@@ -24,10 +24,11 @@ export const Select: React.FC<SelectType> = ({
   onChange,
   values,
 }) => {
+  let i = 0;
   return (
     <SelectWrapper defaultValue={selected} onChange={onChange}>
-      {values.map((val) => (
-        <option value={val}>{`${val}x`}</option>
+      {values.map((data) => (
+        <option key={i++} value={data.value}>{data.label}</option>
       ))}
     </SelectWrapper>
   );

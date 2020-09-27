@@ -37,7 +37,7 @@ const ActiveButton = css`
 
 const ButtonWrapper = styled.button`
   ${BaseButton}
-  ${({ isActive }: ButtonStylesType) => (isActive ? ActiveButton : "")}
+  ${({ isActive }: ButtonType) => (isActive ? ActiveButton : "")}
 `;
 
 export const ButtonIcon: React.FC<ButtonType> = ({ icon, ...props }) => {

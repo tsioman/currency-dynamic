@@ -27,7 +27,11 @@ const mapButtonState: mapButtonStateType = {
   pause: "paused",
   stop: "stopped",
 };
-const speedValues: AnimationSpeedType[] = [0.5, 1, 2];
+const speedValues: { label: string; value: AnimationSpeedType }[] = [
+  { label: "0.5x", value: 0.5 },
+  { label: "1x", value: 1 },
+  { label: "2x", value: 2 },
+];
 
 const ControlsView = styled.div`
   margin: 20px 0;
