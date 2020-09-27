@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { GraphDataType } from "../../types/";
 
 type PathType = {
@@ -6,8 +6,6 @@ type PathType = {
   strokeWidth: number;
   coords: ISVGPath;
   className?: string;
-  frame?: number;
-  timerId?: NodeJS.Timeout;
 };
 
 export interface ISVGPath {
@@ -26,27 +24,8 @@ const toSVGCoordinates = ({ offset, multiplier, data }: ISVGPath): string => {
   return d.concat(collection).join(" ");
 };
 
-export const SVGPath: React.FC<PathType> = ({
-  color,
-  strokeWidth,
-  coords,
-  className,
-  ...props
-}) => {
-  const animateCallback = (node: SVGElement) => {
-    console.log (props)
-    if (node && props.timerId) {
-      const totalLength = Math.ceil(node.getTotalLength());
-      node.style.strokeDasharray = [length++, totalLength].join(" ");
-    }
-    
-  }
-    
-  const ref = useCallback(
-    animateCallback,
-    [props]
-  );
-  return (
+export const SVGPath = React.forwardRef<SVGPathElement, PathType>(
+  ({ color, strokeWidth, coords, className }, ref) => (
     <path
       ref={ref}
       d={toSVGCoordinates(coords)}
@@ -55,5 +34,5 @@ export const SVGPath: React.FC<PathType> = ({
       className={className}
       fill="none"
     ></path>
-  );
-};
+  )
+);

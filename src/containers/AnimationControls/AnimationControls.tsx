@@ -9,14 +9,14 @@ import {
 import { Select } from "../../components/Select/Select";
 
 interface IControlsProps {
-  buttonActiveState: AnimationControl;
-  speed: number;
+  playState: AnimationStateType;
+  speed: AnimationSpeedType;
   onAnimationStateChange: (buttonState: AnimationStateType) => void;
   onAnimationSpeedChange: (speed: AnimationSpeedType) => void;
 }
 
 interface IControlsState {
-  buttonState: AnimationControl;
+  buttonState: AnimationStateType;
 }
 
 type mapButtonStateType = Record<AnimationControl, AnimationStateType>;
@@ -44,34 +44,49 @@ export class AnimationControls extends React.PureComponent<
   constructor(props: IControlsProps) {
     super(props);
     this.state = {
-      buttonState: this.props.buttonActiveState,
+      buttonState: this.props.playState,
     };
   }
-  setAnimationState = (buttonState: AnimationControl) => {
+  componentDidUpdate(prevProps: IControlsProps) {
+    const { playState } = this.props;
+    if (playState && prevProps.playState !== playState) {
+      this.setState({
+        buttonState: playState,
+      });
+    }
+  }
+  setAnimationState = (buttonState: AnimationStateType) => {
     this.setState({
       buttonState,
     });
-    this.props.onAnimationStateChange(mapButtonState[buttonState]);
+    this.props.onAnimationStateChange(buttonState);
   };
   render() {
     let buttonId = 0;
     return (
       <ControlsView>
         <ControlsLabel>Animation Control</ControlsLabel>
-        {buttons.map((button) => (
-          <ButtonIcon
-            key={buttonId++}
-            icon={button}
-            isActive={this.state.buttonState === button}
-            onClick={() => this.setAnimationState(button)}
-          />
-        ))}
+        {buttons.map((button: AnimationControl) => {
+          const buttonState = mapButtonState[button];
+          const isActive = this.state.buttonState === buttonState;
+          return (
+            <ButtonIcon
+              key={buttonId++}
+              icon={button}
+              disabled={isActive}
+              isActive={isActive}
+              onClick={() => this.setAnimationState(buttonState)}
+            />
+          );
+        })}
         <Select
           selected={this.props.speed}
           values={speedValues}
-          onChange={(e: HTMLSelectElement) =>
-            this.props.onAnimationSpeedChange(e.currentTarget.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            this.props.onAnimationSpeedChange(
+              Number(e.target.value) as AnimationSpeedType
+            );
+          }}
         />
       </ControlsView>
     );

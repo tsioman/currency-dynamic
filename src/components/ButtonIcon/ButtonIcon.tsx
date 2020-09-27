@@ -3,14 +3,11 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import { AnimationControl } from "../../types";
 
-type ButtonStylesType = {
-  isActive?: boolean;
-};
-
-type ButtonType = ButtonStylesType & {
+interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   icon: AnimationControl;
-};
+  isActive?: boolean;
+}
 
 const BaseButton = css`
   display: inline-block;

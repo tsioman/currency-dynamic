@@ -2,9 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 
 type SelectType = {
-  onChange: (e: HTMLSelectElement) => void;
-  values: string[]|number[];
-  selected: string|number;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  values: string[] | number[];
+  selected: string | number;
 };
 
 const SelectWrapper = styled.select`
@@ -17,13 +17,16 @@ const SelectWrapper = styled.select`
   color: black;
   cursor: pointer;
   border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);`
-;
-
-export const Select: React.FC<SelectType> = ({...props}) => {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+`;
+export const Select: React.FC<SelectType> = ({
+  selected,
+  onChange,
+  values,
+}) => {
   return (
-    <SelectWrapper onChange={props.onChange}>
-      {props.values.map(val=>(
+    <SelectWrapper defaultValue={selected} onChange={onChange}>
+      {values.map((val) => (
         <option value={val}>{`${val}x`}</option>
       ))}
     </SelectWrapper>

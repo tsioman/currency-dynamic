@@ -21,24 +21,28 @@ interface IGraphProps {
   speed: AnimationSpeedType;
   playState: AnimationStateType;
   className?: string;
+  onAnimationStateChange: (buttonState: AnimationStateType) => void;
 }
 
-const Graphic: React.FC<IGraphProps> = ({ data, options, className, playState, speed }) => {
-  const { multiplier = 1, color } = options;
-  const [x, y] = data[0];
+const Graphic: React.FC<IGraphProps> = ({ ...props }) => {
+  const { multiplier = 1, color } = props.options;
+  const [x, y] = props.data[0];
   const firstGraphPoint = { x, y };
-  const AnimateGraph = withAnimate(SVGPath, {playState, speed});
+  const AnimateGraph = withAnimate(SVGPath);
 
   return (
     <AnimateGraph
-      className={className}
+      className={props.className}
       color={color}
       strokeWidth={3}
       coords={{
         offset: firstGraphPoint,
         multiplier: multiplier,
-        data,
+        data: props.data,
       }}
+      onAnimationStateChange={props.onAnimationStateChange}
+      speed={props.speed}
+      playState={props.playState}
     />
   );
 };

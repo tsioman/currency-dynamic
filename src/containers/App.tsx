@@ -49,7 +49,7 @@ export class App extends React.Component<IAppProps, IAppState> {
       currency: "RUB",
       timeCall: null,
       period: {
-        from: "2020-07-01",
+        from: "2020-09-01",
         to: formatDate(),
       },
       playState: "stopped",
@@ -126,7 +126,6 @@ export class App extends React.Component<IAppProps, IAppState> {
   };
 
   onAnimationSpeedChange = (animationSpeed: AnimationSpeedType) => {
-    console.log (animationSpeed)
     this.setState({
       animationSpeed: animationSpeed,
     });
@@ -146,11 +145,13 @@ export class App extends React.Component<IAppProps, IAppState> {
           }}
           playState={this.state.playState}
           speed={this.state.animationSpeed}
+          onAnimationStateChange={this.onAnimationStateChange}
+
         />
         <div className="controls">
           <AnimationControls
             speed={this.state.animationSpeed}
-            buttonActiveState="stop"
+            playState={this.state.playState}
             onAnimationStateChange={this.onAnimationStateChange}
             onAnimationSpeedChange={this.onAnimationSpeedChange}
           />
