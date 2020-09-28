@@ -21,11 +21,8 @@ const createQs = R.compose(
 
 // Задание 3
 const parseQs = R.compose(
-  R.reduce((acc: QsObj, el: string) => {
-    const [key, val] = el.split("=");
-    acc[key] = val;
-    return acc;
-  }, {}),
+  R.fromPairs,
+  R.map((e: string) => e.split("=")),
   R.split("&"),
   R.replace("?", "")
 );
