@@ -8,7 +8,7 @@ export const LoginForm: React.FC<{}> = () => {
     async (ev) => {
       ev.preventDefault();
       await login(name);
-      history.push("/app/");
+      history.push("/");
     },
     [name]
   );

@@ -7,11 +7,11 @@ import { NotFoundScreen } from "@/screens/NotFoundScreen";
 export const App: React.FC<{}> = () => (
   <Router>
     <Switch>
-      <Route path="/">
-        <AppScreen />
-      </Route>
       <Route path="/login">
         <LoginScreen />
+      </Route>
+      <Route exact path="/">
+        <AppScreen />
       </Route>
       <Route path="*">
         <NotFoundScreen />
