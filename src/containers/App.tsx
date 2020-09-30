@@ -146,7 +146,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           playState={this.state.playState}
           speed={this.state.animationSpeed}
           onAnimationStateChange={this.onAnimationStateChange}
-
+          className="graphic"
         />
         <div className="controls">
           <AnimationControls
