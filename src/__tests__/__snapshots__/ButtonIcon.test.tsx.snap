@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Play button with non active disable state 1`] = `
+<button
+  className="css-ecft75"
+  disabled={false}
+  onClick={[MockFunction]}
+>
+  <img
+    src="src/img/play.png"
+  />
+</button>
+`;

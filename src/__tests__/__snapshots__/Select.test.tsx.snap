@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders Select with two options 1`] = `
+<select
+  className="css-10x8iy2"
+  defaultValue="text"
+  onChange={[MockFunction]}
+>
+  <option
+    value="0.5"
+  >
+    0.5x
+  </option>
+  <option
+    value="text"
+  >
+    Test text
+  </option>
+</select>
+`;

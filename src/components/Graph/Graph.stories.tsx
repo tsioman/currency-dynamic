@@ -32,7 +32,8 @@ const graphGroupId = "Graph Parameters";
 
 export const GraphBody: React.FC<{}> = () => (
   <Graph
-    options={{width: 600, height: 300, color: value}}
+    options={{ area: { width: 600, height: 300 }, color: value, multiplier: 1 }}
     data={InitialConfig.graph}
+    playState={"stopped"}
   />
 );

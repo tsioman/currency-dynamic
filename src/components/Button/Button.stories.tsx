@@ -11,11 +11,11 @@ export default {
 let buttonKey = 1;
 export const GraphButton: React.FC<{}> = () => (
   <>
-    {InitialConfig.colorSet.map(color => (
+    {InitialConfig.buttons.map(button => (
       <Button
         key={buttonKey++}
-        color={color}
-        textButton={color}
+        color={button.color}
+        textButton={button.color}
         isActive={boolean("Active", false)}
         onClick={action("Button click")}
       />
@@ -26,5 +26,10 @@ export const GraphButton: React.FC<{}> = () => (
         isActive={boolean("Active", true)}
         onClick={action("Button click")}
       />
+    <Button
+      isFormButton={true}
+      textButton="XL button"
+      onClick={() => {}}
+    />
   </>
 );

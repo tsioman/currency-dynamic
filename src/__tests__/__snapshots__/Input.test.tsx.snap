@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders Select with two options 1`] = `
+<div
+  className="css-1wbj7b9"
+>
+  <label
+    className="css-eq8zle"
+  >
+    Label:
+  </label>
+  <input
+    className="css-5mhwm8"
+    onChange={[MockFunction]}
+    placeholder="Placeholder"
+    type="text"
+    value="Testing"
+  />
+</div>
+`;
