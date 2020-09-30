@@ -3,8 +3,7 @@ import { SVGPath } from "../SVGPath/SVGPath";
 import { GraphDataType, ColorSetType, AreaType } from "../../types";
 import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
-import styled from "@emotion/styled";
-import { keyframes } from "@emotion/core";
+
 interface IGraphProps {
   data: GraphDataType;
   options: {
@@ -12,7 +11,7 @@ interface IGraphProps {
     color: ColorSetType;
     multiplier?: number;
   };
-  className: string;
+  className?: string;
 }
 
 const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
@@ -31,27 +30,13 @@ const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
   );
 };
 
-const rotate = keyframes`
-  to {
-    stroke-dashoffset: 0;
-  }
-`;
-
-const AnimatedGraph = styled(Graphic)`
-  stroke-dashoffset: 5500;
-  stroke-dasharray: 5500;
-  animation-play-state: paused;
-  animation: ${rotate} 15s forwards ease-out; 
-
-`;
-
 export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
   const { area } = props.options;
   return (
     <svg width={area.width} height={area.height}>
       <Axis x={area.width} y={area.height} />
       <GraphBody area={area} />
-      <AnimatedGraph {...props} />
+      <Graphic {...props} />
     </svg>
   );
 };

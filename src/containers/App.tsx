@@ -122,6 +122,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             color: this.state.color,
             multiplier: 1,
           }}
+          className="graphic"
         />
         <div className="controls">
           {this.props.initial.buttons.map((button) => (
