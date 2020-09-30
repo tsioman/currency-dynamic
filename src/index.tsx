@@ -1,12 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
-import { App } from "./containers/AppRouter";
-
+import { AppRouter } from "./containers/AppRouter";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
-render(
+const App = () => (
   <ErrorBoundary>
-    <App />
-  </ErrorBoundary>,
-  document.getElementById("root")
+    <AppRouter />
+  </ErrorBoundary>
 );
+render(<App />, document.getElementById("root"));

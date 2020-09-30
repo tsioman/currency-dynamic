@@ -22,7 +22,7 @@ interface IAppState {
   currency: CurrencyAvaiableType;
   timeCall: string | null;
 }
-export class App extends React.Component<IAppProps, IAppState> {
+export class MainApp extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
     this.state = {

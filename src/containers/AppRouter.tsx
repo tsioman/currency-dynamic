@@ -4,7 +4,7 @@ import { LoginScreen } from "@/screens/LoginScreen";
 import { AppScreen } from "@/screens/AppScreen";
 import { NotFoundScreen } from "@/screens/NotFoundScreen";
 
-export const App: React.FC<{}> = () => (
+export const AppRouter: React.FC<{}> = () => (
   <Router>
     <Switch>
       <Route path="/login">

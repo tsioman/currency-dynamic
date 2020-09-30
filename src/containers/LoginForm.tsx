@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { login } from "@/api/auth";
 import { useHistory } from "react-router-dom";
+
 export const LoginForm: React.FC<{}> = () => {
   const history = useHistory();
   const [name, setName] = useState("");
@@ -12,15 +13,15 @@ export const LoginForm: React.FC<{}> = () => {
     },
     [name]
   );
+  const onChange = useCallback(
+    (ev) => setName((ev.target as HTMLInputElement).value),
+    [name]
+  );
   return (
     <form onSubmit={onSubmit}>
       <label>
         Name:
-        <input
-          placeholder="Enter your name"
-          value={name}
-          onChange={(ev) => setName((ev.target as HTMLInputElement).value)}
-        />
+        <input placeholder="Enter your name" value={name} onChange={onChange} />
       </label>
       <button>Login</button>
     </form>
