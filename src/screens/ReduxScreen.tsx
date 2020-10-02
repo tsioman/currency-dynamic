@@ -25,15 +25,16 @@ class RawReduxScreen extends React.Component<RawReduxScreenProps, {}> {
   render() {
     const { isLoading, data, error } = this.props;
     let key = 0;
-    if (error) {
-      return <span>{error}</span>;
-    }
-    if (isLoading || data === null) {
-      return <span>Please wait</span>;
-    }
-    return data.results.map((value) => (
-      <div key={`name${key++}`}>{value.name}</div>
-    ));
+    return (
+      <div>
+        {isLoading && <span>Please wait</span>}
+        {error && <span>{error}</span>}
+        {data &&
+          data.results.map((value) => (
+            <div key={`name${key++}`}>{value.name}</div>
+          ))}
+      </div>
+    );
   }
 }
 
