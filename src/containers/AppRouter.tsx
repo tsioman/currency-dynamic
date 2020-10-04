@@ -4,8 +4,18 @@ import { LoginScreen } from "@/screens/LoginScreen";
 import { AppScreen } from "@/screens/AppScreen";
 import { NotFoundScreen } from "@/screens/NotFoundScreen";
 import { ReduxScreen } from "@/screens/ReduxScreen";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { store } from "@/rdx/store";
+import { thunk } from "@/rdx/middlewares/thunk";
+import rootReducer from "@/rdx/reducer/thunk";
+
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 export const AppRouter: React.FC<{}> = () => (
   <Provider store={store}>

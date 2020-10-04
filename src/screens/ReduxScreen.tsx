@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { PeopleState } from "@/rdx/store";
-import { fetchPeople } from "@/rdx/reducer/people";
+import { State } from "@/rdx/reducer/thunk";
+import { fetchPeople } from "@/rdx/actions/thunk";
 
-const mapStateToProps = (state: PeopleState) => {
+const mapStateToProps = (state: State) => {
   return {
-    data: state.people.data,
-    error: state.people.error,
-    isLoading: state.people.loading,
+    data: state.data,
+    error: state.error,
+    isLoading: state.loading,
   };
 };
 
