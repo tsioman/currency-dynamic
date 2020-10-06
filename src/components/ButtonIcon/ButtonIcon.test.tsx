@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonIcon } from "../components/ButtonIcon/ButtonIcon";
+import { ButtonIcon } from "./ButtonIcon";
 import renderer from "react-test-renderer";
 
 describe("Button", () => {
