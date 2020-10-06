@@ -36,7 +36,7 @@ export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
     <svg width={area.width} height={area.height}>
       <Axis x={area.width} y={area.height} />
       <GraphBody area={area} />
-      <Graphic {...props} />
+      <Graphic className="graphic" {...props} />
     </svg>
   );
 };

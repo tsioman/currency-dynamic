@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { Graph } from "../components/Graph/Graph";
-import { stableGraph } from "../data";
+import { Graph } from "./Graph";
+import { stableGraph } from "../../data";
 
 describe("Graph render check", () => {
 

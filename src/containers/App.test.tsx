@@ -4,7 +4,7 @@ import { App } from "../containers/App";
 import { Graph } from "../components/Graph/Graph";
 import { formatDate } from "../util/";
 import { mount } from "enzyme";
-import { responseRUB } from "../__tests__/__mocks__/rates";
+import { responseRUB } from "../../__mocks__/rates";
 import { getCurrency } from "../services/Currency";
 
 global.fetch = jest.fn().mockImplementation(() =>
