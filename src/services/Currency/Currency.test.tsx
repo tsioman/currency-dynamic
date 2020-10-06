@@ -1,10 +1,10 @@
-import { responseRUB, responseUSD } from "../__tests__/__mocks__/rates";
+import { responseRUB, responseUSD } from "../../../__mocks__/rates";
 import {
   ratesToData,
   dataToGraph,
   normalize,
   convertCurrencyToGraph,
-} from "../services/Currency";
+} from "./index";
 
 describe("Currency tests cases", () => {
   it("Convert raw data for RUB rates working corect", () => {

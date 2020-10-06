@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Axis } from "../components/Axis/Axis";
+import { Axis } from "./Axis";
 
 describe("Axis renders checks", () => {
   const axisWrapper = shallow(
