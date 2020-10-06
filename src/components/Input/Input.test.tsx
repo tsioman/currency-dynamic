@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "../components/Input/Input";
+import { Input } from "./Input";
 import renderer from "react-test-renderer";
 
 describe("Input", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Select } from "../components/Select/Select";
+import { Select } from "./Select";
 import renderer from "react-test-renderer";
 
 describe("Select", () => {
