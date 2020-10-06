@@ -1,4 +1,4 @@
-import { ICurrencyExchange } from "../../services/Currency";
+import { ICurrencyExchange } from "../src/services/Currency";
 
 export const responseRUB: ICurrencyExchange = {
   rates: {
