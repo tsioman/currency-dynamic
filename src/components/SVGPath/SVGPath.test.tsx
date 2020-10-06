@@ -1,7 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 
-import { SVGPath } from "../components/SVGPath/SVGPath";
+import { SVGPath } from "./SVGPath";
 
 describe("SVGPath work correct", () => {
   it("SVGPath work correct with stable data", () => {
