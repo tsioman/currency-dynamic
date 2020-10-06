@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { Button } from "../components/Button/Button";
+import { Button } from "./Button";
 import toJson from "enzyme-to-json";
 
 const onClick = jest.fn();
