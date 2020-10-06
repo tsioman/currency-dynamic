@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input renders Select with two options 1`] = `
+exports[`Input renders Input with value 1`] = `
 <div
   className="css-1wbj7b9"
 >
