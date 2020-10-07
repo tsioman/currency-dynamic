@@ -53,7 +53,7 @@ export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
     <svg width={area.width} height={area.height}>
       <Axis x={area.width} y={area.height} />
       <GraphBody area={area} />
-      {props.data.length > 0 && <Graphic {...props} className="graphic" />}
+      {props.data.length > 0 && <Graphic className="graphic" {...props} />}
     </svg>
   );
 };
