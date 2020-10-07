@@ -3,7 +3,7 @@ import { http } from "../../api";
 import { PeopleResponse } from "../../types/";
 
 export const fetchPeople = createAsyncThunk("people/fetchData", () =>
-  http("https://cors-anywhere.herokuapp.com/https://swapi.dev/api/people")
+  http("https://swapi.dev/api/people")
   .then((data) => data as PeopleResponse)
   .catch((e) => {
     throw Error("Fetch Error: " + e);
