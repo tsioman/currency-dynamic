@@ -3,7 +3,7 @@ import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
 import { RequestLog } from "../components/RequsetLog/RequestLog";
 import { Settings } from "../containers/SettingsForm/SettingsForm";
-import { formatDate } from "../util";
+import { getCurrentDate } from "../util/date";
 
 import {
   getCurrency,
@@ -44,7 +44,7 @@ export class App extends React.Component<IAppProps, IAppState> {
       timeCall: null,
       period: {
         from: "2020-07-01",
-        to: formatDate(),
+        to: getCurrentDate(),
       },
     };
     this.setCurrency = this.setCurrency.bind(this);
