@@ -164,12 +164,12 @@ export class App extends React.Component<IAppProps, IAppState> {
               isActive={this.state.currency === button.value}
             />
           ))}
+          {this.state.timeCall && <RequestLog request={this.state.timeCall} />}
           <Settings
             area={this.state.area}
             period={this.state.period}
             onSubmit={this.onSettingsSubmit}
           />
-          {this.state.timeCall && <RequestLog request={this.state.timeCall} />}
         </div>
       </div>
     );
