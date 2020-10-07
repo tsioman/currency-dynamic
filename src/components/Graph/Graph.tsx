@@ -1,35 +1,42 @@
 import React from "react";
 import { SVGPath } from "../SVGPath/SVGPath";
-import { GraphDataType, ColorSetType } from "../../types";
+import { GraphDataType, ColorSetType, AreaType } from "../../types";
 import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
 
 interface IGraphProps {
   data: GraphDataType;
   options: {
-    width: number;
-    height: number;
+    area: AreaType;
     color: ColorSetType;
     multiplier?: number;
   };
+  className?: string;
 }
 
-export const Graph: React.FC<IGraphProps> = ({ data, options }) => {
-  const { width, height, multiplier = 1, color } = options;
+const Graphic: React.FC<IGraphProps> = ({ data, options, className }) => {
+  const { multiplier = 1, color } = options;
   return (
-    <svg width={width} height={height}>
-      <Axis x={width} y={height} />
-      <GraphBody area={{ width: width, height: height }} />
-      <SVGPath
-        className="graphic"
-        color={color}
-        strokeWidth={3}
-        coords={{
-          offset: { x: 0, y: 0 },
-          multiplier: multiplier,
-          data,
-        }}
-      />
+    <SVGPath
+      className={className}
+      color={color}
+      strokeWidth={3}
+      coords={{
+        offset: { x: 0, y: 0 },
+        multiplier: multiplier,
+        data,
+      }}
+    />
+  );
+};
+
+export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
+  const { area } = props.options;
+  return (
+    <svg width={area.width} height={area.height}>
+      <Axis x={area.width} y={area.height} />
+      <GraphBody area={area} />
+      <Graphic className="graphic" {...props} />
     </svg>
   );
 };
