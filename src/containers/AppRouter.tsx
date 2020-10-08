@@ -9,13 +9,7 @@ import { Provider } from "react-redux";
 import { thunk } from "@/rdx/middlewares/thunk";
 import rootReducer from "@/rdx/reducer/thunk";
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+export const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 export const AppRouter: React.FC<{}> = () => (
   <Provider store={store}>

@@ -23,7 +23,7 @@ const loadFailure = (error: string) => ({
 export const fetchPeople = () => {
   return (dispatch: Function) => {
     dispatch(loadStarted());
-    http("https://cors-anywhere.herokuapp.com/https://swapi.dev/api/people")
+    return http("https://swapi.dev/api/people")
       .then((data) => dispatch(loadSuccess(data as PeopleResponse)))
       .catch((err) => dispatch(loadFailure(err)));
   };
