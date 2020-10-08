@@ -29,8 +29,7 @@ export const peopleSlice = createSlice({
   reducers: {
     clickAction: {
       reducer(state, action) {
-        const { show } = action.payload;
-        state.show = show;
+        state.show = action.payload.show;
       },
       prepare(payload: boolean) {
         return { payload, meta: { probability: 0.5 } };
