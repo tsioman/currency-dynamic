@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { GraphBody } from "../components/GraphBody/GraphBody";
+import { GraphBody } from "./GraphBody";
 
 describe("GraphBody renders checks", () => {
   const graphBodyWrapper = mount(

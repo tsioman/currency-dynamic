@@ -1,10 +1,10 @@
 import React from "react";
 import { InitialConfig } from "../data";
-import { App } from "../containers/App";
+import { MainApp } from "./App";
 import { Graph } from "../components/Graph/Graph";
 import { formatDate } from "../util/";
 import { mount } from "enzyme";
-import { responseRUB } from "../__tests__/__mocks__/rates";
+import { responseRUB } from "../../__mocks__/rates";
 import { getCurrency } from "../services/Currency";
 
 global.fetch = jest.fn().mockImplementation(() =>
@@ -32,7 +32,7 @@ describe("Integration tests cases", () => {
       })
     ).toEqual(responseRUB);
   });
-  const appComponent = mount(<App initial={InitialConfig} />);
+  const appComponent = mount(<MainApp initial={InitialConfig} />);
 
   it("first redner and initial state test [constructor and initial state test]", () => {
     expect(
