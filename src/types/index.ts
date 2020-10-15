@@ -8,3 +8,4 @@ export { DatePeriodType } from "./DatePeriod";
 export { AnimationStateType } from "./AnimationState";
 export { AnimationControl } from "./AnimationControl";
 export { AnimationSpeedType } from "./AnimationSpeed";
+export { PeopleResponse } from "./PeopleResponse";

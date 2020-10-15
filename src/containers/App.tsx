@@ -38,7 +38,7 @@ interface IAppState {
   playState: AnimationStateType;
   animationSpeed: AnimationSpeedType;
 }
-export class App extends React.Component<IAppProps, IAppState> {
+export class MainApp extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
     this.state = {
