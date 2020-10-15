@@ -12,17 +12,15 @@ export default {
 const selectChange = action("Select change");
 
 export const SelectControl: React.FC<{}> = () => (
-  <>
-    <Select
-      selected="label"
-      values={[
-        { label: "test label 1", value: "test value" },
-        { label: "test numeric", value: 10 },
-        { label: "just string", value: "string" },
-      ]}
-      onChange={(e) => {
-        selectChange(e.target.value);
-      }}
-    />
-  </>
+  <Select
+    selected="label"
+    values={[
+      { label: "test label 1", value: "test value" },
+      { label: "test numeric", value: 10 },
+      { label: "just string", value: "string" },
+    ]}
+    onChange={(e) => {
+      selectChange(e.target.value);
+    }}
+  />
 );

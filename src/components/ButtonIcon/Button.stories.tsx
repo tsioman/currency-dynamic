@@ -8,34 +8,33 @@ export default {
   title: "GraphMakerComponents",
   decorators: [withKnobs],
 };
-let buttonId = 1;
-const buttons: AnimationControl[] = ["play", "pause", "stop"];
+const buttons: AnimationControl[] = ["stop", "pause", "stop"];
 const onButtonClick = action("Button click");
 
-export const ButtonControl: React.FC<{}> = () => (
-  <>
-    {buttons.map((button) => (
-      <>
-        <ButtonIcon
-          key={buttonId++}
-          icon={button}
-          disabled={false}
-          isActive={false}
-          onClick={(e) => {
-            onButtonClick(e);
-          }}
-        />
+export const ButtonControl: React.FC<{}> = () => {
+  return (
+    <>
+      {buttons.map((button, index) => (
+        <React.Fragment key={index}>
+          <ButtonIcon
+            icon={button}
+            disabled={false}
+            isActive={false}
+            onClick={(e) => {
+              onButtonClick(e);
+            }}
+          />
 
-        <ButtonIcon
-          key={buttonId++}
-          icon={button}
-          disabled={true}
-          isActive={true}
-          onClick={(e) => {
-            onButtonClick(e);
-          }}
-        />
-      </>
-    ))}
-  </>
-);
+          <ButtonIcon
+            icon={button}
+            disabled={true}
+            isActive={true}
+            onClick={(e) => {
+              onButtonClick(e);
+            }}
+          />
+        </React.Fragment>
+      ))}
+    </>
+  );
+};

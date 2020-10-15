@@ -4,7 +4,7 @@ import { css } from "@emotion/core";
 import { AnimationControl } from "../../types";
 
 interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
+  onClick: (e) => void;
   icon: AnimationControl;
   isActive?: boolean;
 }
@@ -40,10 +40,8 @@ const ButtonWrapper = styled.button`
   ${({ isActive }: ButtonType) => (isActive ? ActiveButton : "")}
 `;
 
-export const ButtonIcon: React.FC<ButtonType> = ({ icon, ...props }) => {
-  return (
-    <ButtonWrapper {...props}>
-      <img src={`src/img/${icon}.png`} />
-    </ButtonWrapper>
-  );
-};
+export const ButtonIcon: React.FC<ButtonType> = ({ ...props }) => (
+  <ButtonWrapper {...props}>
+    <img src={`src/img/${props.icon}.png`} />
+  </ButtonWrapper>
+);

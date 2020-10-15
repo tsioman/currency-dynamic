@@ -51,14 +51,13 @@ export class AnimationControls extends React.PureComponent<
       buttonState: this.props.playState,
     };
   }
-  componentDidUpdate(prevProps: IControlsProps) {
-    const { playState } = this.props;
-    if (playState && prevProps.playState !== playState) {
-      this.setState({
-        buttonState: playState,
-      });
-    }
-  }
+  static getDerivedStateFromProps = (
+    nextProps: IControlsProps,
+    prevState: IControlsState
+  ) =>
+    nextProps.playState !== prevState.buttonState && {
+      buttonState: nextProps.playState,
+    };
   setAnimationState = (buttonState: AnimationStateType) => {
     this.setState({
       buttonState,

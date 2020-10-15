@@ -48,6 +48,7 @@ export const withAnimate = <Props extends Object>(
   const ref = useCallback(animateCallback, [step]);
 
   useEffect(() => {
+    console.log(playState)
     if (playState === "running") {
       timerId = setInterval(() => setStep(i++), 1000 / (fps * speed));
     } else {

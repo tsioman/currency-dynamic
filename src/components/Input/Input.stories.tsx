@@ -16,14 +16,12 @@ export const InputControl: React.FC<{}> = () => {
     setValue((e.target as HTMLInputElement).value);
   };
   return (
-    <>
-      <Input
-        labelText="Label:"
-        type="text"
-        placeholder="Placeholder"
-        value={value}
-        onChange={onChange}
-      />
-    </>
+    <Input
+      labelText="Label:"
+      type="text"
+      placeholder="Placeholder"
+      value={value}
+      onChange={onChange}
+    />
   );
 };
