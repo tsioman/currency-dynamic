@@ -9,14 +9,14 @@ const mockResponse = {
 };
 
 describe("test async thunk", () => {
-  global.fetch = jest.fn().mockResolvedValue({
-    json: () => mockResponse,
-  });
-
   beforeEach(() => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: () => mockResponse,
+    });
+  });
+  afterEach(() => {
     fetch.mockClear();
   });
-
   it("data error when response fail", async () => {
     const errorText = "API is down";
     fetch.mockRejectedValueOnce(errorText);

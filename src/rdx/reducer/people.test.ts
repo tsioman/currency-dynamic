@@ -9,19 +9,17 @@ const mockResponse = {
 };
 
 describe("test async thunk", () => {
-  global.fetch = jest.fn().mockImplementation(() =>
-    Promise.resolve({
-      json: () => mockResponse,
-    })
-  );
-
   beforeEach(() => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: () => mockResponse,
+    });
+  });
+  afterEach(() => {
     fetch.mockClear();
   });
-
   it("data error when response fail", async () => {
     const errorText = "API is down";
-    fetch.mockImplementationOnce(() => Promise.reject(errorText));
+    fetch.mockRejectedValueOnce(errorText);
     expect(
       await store.dispatch(fetchPeople()).then(() => {
         const state = store.getState();
