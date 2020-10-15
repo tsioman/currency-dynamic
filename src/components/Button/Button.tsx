@@ -17,7 +17,7 @@ type ButtonType = ButtonStyleType & {
 const BaseButton = css`
   border-radius: 4px;
   padding: 7px 15px;
-  margin: 0 5px;
+  margin: 5px;
   background-color: white;
   color: black;
   cursor: pointer;

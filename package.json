@@ -8,7 +8,7 @@
     "start": "npx webpack-dev-server --mode development --open --hot",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
     "test": "npx jest",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook"
   },
   "repository": {
@@ -54,6 +54,7 @@
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "ramda": "^0.27.1",
+    "react-test-renderer": "^16.13.1",
     "style-loader": "^1.2.1",
     "typescript": "^3.9.6",
     "webpack": "^4.43.0",

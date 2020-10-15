@@ -5,8 +5,8 @@ import { css } from "@emotion/core";
 const Label = styled.label`
   font-size: 16px;
   margin-bottom: 5px;
-  padding: .5em 1em .5em 0;
-  width: 10%;
+  padding: 1em 1em .5em 0;
+  width: 7%;
 `;
 
 const InputStyled = styled.input`
@@ -17,7 +17,6 @@ const InputStyled = styled.input`
   font-size: 18px;
   padding: 5px 10px;
   flex: 1;
-
 `;
 
 const BaseInput = css`

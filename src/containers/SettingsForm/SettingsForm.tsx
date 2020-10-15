@@ -49,7 +49,7 @@ export class Settings extends React.PureComponent<
 
   render() {
     return (
-      <form onSubmit={this.formHandle}>
+      <form style={{margin: "10px 0"}} onSubmit={this.formHandle}>
         <fieldset>
           <legend>Settings</legend>
           <Input

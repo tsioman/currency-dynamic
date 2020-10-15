@@ -26,5 +26,10 @@ export const GraphButton: React.FC<{}> = () => (
         isActive={boolean("Active", true)}
         onClick={action("Button click")}
       />
+    <Button
+      isFormButton={true}
+      textButton="XL button"
+      onClick={() => {}}
+    />
   </>
 );

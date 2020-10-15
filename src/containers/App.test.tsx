@@ -12,6 +12,10 @@ global.fetch = jest.fn().mockImplementation(() =>
     json: () => Promise.resolve(responseRUB),
   })
 );
+//** getTotalLength not working in Jest */
+if (!SVGElement.prototype.getTotalLength) {
+  SVGElement.prototype.getTotalLength = () => 5000;
+}
 
 describe("Integration tests cases", () => {
   beforeEach(() => {
@@ -54,7 +58,7 @@ describe("Integration tests cases", () => {
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(
       `Array []`
     );
-    expect(appComponent.find("button").at(1).simulate("click"));
+    expect(appComponent.findWhere((n) => n.name() === "Button" && n.prop("isActive") === false).simulate("click"));
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(`
       Array [
         Array [

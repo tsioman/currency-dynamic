@@ -3,7 +3,9 @@ import { Graph } from "../components/Graph/Graph";
 import { Button } from "../components/Button/Button";
 import { RequestLog } from "../components/RequsetLog/RequestLog";
 import { Settings } from "../containers/SettingsForm/SettingsForm";
+import { AnimationControls } from "./AnimationControls/AnimationControls";
 import { getCurrentDate } from "../util/date";
+import "../css/main.css";
 
 import {
   getCurrency,
@@ -19,6 +21,8 @@ import {
   CurrencyAvaiableType,
   DatePeriodType,
   AreaType,
+  AnimationStateType,
+  AnimationSpeedType
 } from "../types";
 interface IAppProps {
   initial: InitialConfigType;
@@ -31,6 +35,8 @@ interface IAppState {
   timeCall: string | null;
   period: DatePeriodType;
   area: AreaType;
+  playState: AnimationStateType;
+  animationSpeed: AnimationSpeedType;
 }
 export class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
@@ -46,6 +52,8 @@ export class App extends React.Component<IAppProps, IAppState> {
         from: "2020-07-01",
         to: getCurrentDate(),
       },
+      playState: "stopped",
+      animationSpeed: 1
     };
     this.setCurrency = this.setCurrency.bind(this);
     this.updateTimeLog = this.updateTimeLog.bind(this);
@@ -111,10 +119,23 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
   };
 
+  onAnimationStateChange = (animationState: AnimationStateType) => {
+    this.setState({
+      playState: animationState,
+    });
+  };
+
+  onAnimationSpeedChange = (animationSpeed: AnimationSpeedType) => {
+    this.setState({
+      animationSpeed: animationSpeed,
+    });
+  };
+
   render() {
     let buttonKey = 0;
     return (
       <div>
+        <h1>Dynamic graph view for selected currency and period </h1>
         <Graph
           data={this.state.graph}
           options={{
@@ -122,9 +143,18 @@ export class App extends React.Component<IAppProps, IAppState> {
             color: this.state.color,
             multiplier: 1,
           }}
+          playState={this.state.playState}
+          speed={this.state.animationSpeed}
+          onAnimationStateChange={this.onAnimationStateChange}
           className="graphic"
         />
         <div className="controls">
+          <AnimationControls
+            speed={this.state.animationSpeed}
+            playState={this.state.playState}
+            onAnimationStateChange={this.onAnimationStateChange}
+            onAnimationSpeedChange={this.onAnimationSpeedChange}
+          />
           {this.props.initial.buttons.map((button) => (
             <Button
               color={button.color}
