@@ -14,7 +14,7 @@ export const LoginForm: React.FC<{}> = () => {
     [name]
   );
   const onChange = useCallback(
-    (ev) => setName((ev.target as HTMLInputElement).value),
+    (e) => setName((e.target as HTMLInputElement).value),
     [name]
   );
   return (

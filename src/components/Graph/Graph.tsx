@@ -7,9 +7,8 @@ import {
   AnimationStateType,
   AnimationSpeedType,
 } from "../../types";
-import { Axis } from "../Axis/Axis";
 import { GraphBody } from "../GraphBody/GraphBody";
-import { withAnimate } from "../../hoc/withAnimate";
+import { withAnimate } from "../../utils/withAnimate";
 
 interface IGraphProps {
   data: GraphDataType;
@@ -51,7 +50,6 @@ export const Graph: React.FC<IGraphProps> = ({ ...props }) => {
   const { area } = props.options;
   return (
     <svg width={area.width} height={area.height}>
-      <Axis x={area.width} y={area.height} />
       <GraphBody area={area} />
       {props.data.length > 0 && <Graphic className="graphic" {...props} />}
     </svg>

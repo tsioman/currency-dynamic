@@ -42,6 +42,6 @@ const ButtonWrapper = styled.button`
 
 export const ButtonIcon: React.FC<ButtonType> = ({ ...props }) => (
   <ButtonWrapper {...props}>
-    <img src={`src/img/${props.icon}.png`} />
+    <img src={`/img/${props.icon}.png`} />
   </ButtonWrapper>
 );

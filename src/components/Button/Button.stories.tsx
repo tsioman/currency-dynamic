@@ -5,15 +5,14 @@ import { Button } from "./Button";
 import { InitialConfig } from "../../data";
 
 export default {
-  title: "GraphMakerComponents",
+  title: "Controls",
   decorators: [withKnobs],
 };
-let buttonKey = 1;
-export const GraphButton: React.FC<{}> = () => (
+export const ButtonControl: React.FC<{}> = () => (
   <>
-    {InitialConfig.buttons.map(button => (
+    {InitialConfig.buttons.map((button, index) => (
       <Button
-        key={buttonKey++}
+        key={index}
         color={button.color}
         textButton={button.color}
         isActive={boolean("Active", false)}
@@ -21,15 +20,11 @@ export const GraphButton: React.FC<{}> = () => (
       />
     ))}
     <Button
-        color={"blue"}
-        textButton={text("any text", "long long text on button")}
-        isActive={boolean("Active", true)}
-        onClick={action("Button click")}
-      />
-    <Button
-      isFormButton={true}
-      textButton="XL button"
-      onClick={() => {}}
+      color={"blue"}
+      textButton={text("any text", "long long text on button")}
+      isActive={boolean("Active", true)}
+      onClick={action("Button click")}
     />
+    <Button isFormButton={true} textButton="XL button" onClick={() => {}} />
   </>
 );
