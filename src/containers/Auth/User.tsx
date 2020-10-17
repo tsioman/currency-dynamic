@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { logout } from "@/api/auth";
 import { useHistory } from "react-router-dom";
+import { Button } from "@/components/Button/Button";
 
 export const User = () => {
   const login = localStorage.getItem("login");
@@ -17,7 +18,11 @@ export const User = () => {
       {username ? (
         <div>
           <span>Welcome, {username} </span>
-          <button onClick={tryToLogOut}>Press to Log Out</button>
+          <Button
+            color="blue"
+            onClick={tryToLogOut}
+            textButton="Press to Log Out"
+          />
         </div>
       ) : (
         <span>Try to logout</span>
