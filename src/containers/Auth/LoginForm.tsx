@@ -1,4 +1,7 @@
 import React, { useCallback, useState } from "react";
+import { Button } from "@/components/Button/Button";
+import { Input } from "@/components/Input/Input";
+import { Form } from "@/components/Form/Form";
 import { login } from "@/api/auth";
 import { useHistory } from "react-router-dom";
 
@@ -18,12 +21,9 @@ export const LoginForm: React.FC<{}> = () => {
     [name]
   );
   return (
-    <form onSubmit={onSubmit}>
-      <label>
-        Name:
-        <input placeholder="Enter your name" value={name} onChange={onChange} />
-      </label>
-      <button>Login</button>
-    </form>
+    <Form onSubmit={onSubmit} formName="Enter your name for login">
+      <Input labelText="Name:" value={name} onChange={onChange} />
+      <Button isFormButton={true} textButton="Login" />
+    </Form>
   );
 };

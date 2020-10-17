@@ -3,7 +3,7 @@ import { ButtonStyleType, ButtonStyled } from "./Button.styled";
 
 type ButtonType = ButtonStyleType & {
   textButton: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const Button: React.FC<ButtonType> = ({ textButton, ...props }) => {

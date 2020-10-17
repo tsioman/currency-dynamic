@@ -3,9 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 
 const BaseInput = css`
-margin: 10px 0;
-display: flex;
-justify-content: flex-end;
+  margin: 10px 0;
 `;
 
 export const LabelStyled = styled.label`
@@ -16,8 +14,9 @@ export const LabelStyled = styled.label`
 `;
 
 export const InputStyled = styled.input`
-  height: 40px;
+  height: 32px;
   width: 100%;
+  max-width: 320px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   font-size: 18px;
