@@ -7,7 +7,7 @@ exports[`Button Play button with non active disable state 1`] = `
   onClick={[MockFunction]}
 >
   <img
-    src="src/img/play.png"
+    src="/img/play.png"
   />
 </button>
 `;

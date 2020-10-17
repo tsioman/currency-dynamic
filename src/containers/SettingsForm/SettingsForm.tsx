@@ -13,7 +13,7 @@ interface ISettingsFormState {
   period: DatePeriodType;
 }
 
-export class Settings extends React.PureComponent<
+export class SettingsForm extends React.PureComponent<
   ISettingsFormProps,
   ISettingsFormState
 > {

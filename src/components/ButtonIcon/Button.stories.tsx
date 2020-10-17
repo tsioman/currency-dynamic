@@ -5,13 +5,13 @@ import { ButtonIcon } from "./ButtonIcon";
 import { AnimationControl } from "../../types/";
 
 export default {
-  title: "GraphMakerComponents",
+  title: "Controls",
   decorators: [withKnobs],
 };
 const buttons: AnimationControl[] = ["stop", "pause", "stop"];
 const onButtonClick = action("Button click");
 
-export const ButtonControl: React.FC<{}> = () => {
+export const ButtonIconControl: React.FC<{}> = () => {
   return (
     <>
       {buttons.map((button, index) => (

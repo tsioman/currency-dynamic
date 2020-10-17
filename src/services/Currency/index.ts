@@ -1,5 +1,5 @@
-import { GraphDataType, AreaType, CurrencyAvaiableType, DatePeriodType } from "../../types";
-import { http } from "../../api/index";
+import { GraphDataType, AreaType, CurrencyAvaiableType, DatePeriodType } from "@/types";
+import { http } from "@/api/index";
 
 const eventAPICall = new CustomEvent("APICall", {
   detail: () => {

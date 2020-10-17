@@ -1,5 +1,5 @@
 import React from "react";
-import { Settings } from "./SettingsForm";
+import { SettingsForm } from "./SettingsForm";
 import { mount } from "enzyme";
 
 describe("Settings tests cases", () => {
@@ -12,7 +12,9 @@ describe("Settings tests cases", () => {
     height: 300,
   };
   const appComponent = mount(
-    <Settings area={area} period={period} onSubmit={jest.fn()} />
+    <SettingsForm area={area} period={period} onSubmit={jest.fn()} />
   );
-  
+  it("Mock Settings Tests", async () => {
+    expect(appComponent).toMatchInlineSnapshot(`ReactWrapper {}`);
+  });
 });
