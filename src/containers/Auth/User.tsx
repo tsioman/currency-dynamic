@@ -1,28 +1,28 @@
-import React, { useState, useCallback } from "react";
-import { logout } from "@/api/auth";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { Button } from "@/components/Button/Button";
+import { CurrencyState } from "@/rdx/reducer";
+import { connect } from "react-redux";
+import { isEmpty } from "ramda";
+import { actions } from "@/containers/Auth/reducer";
 
-export const User = () => {
-  const login = localStorage.getItem("login");
-  const [username, setUserName] = useState(login);
-  const history = useHistory();
+const mapStateToProps = ({ login }: CurrencyState) => ({
+  ...login,
+});
 
-  const tryToLogOut = useCallback(() => {
-    setUserName("");
-    logout().then(() => history.go(0));
-  }, []);
+const mapDispatchToProps = {
+  logout: actions.logout,
+};
 
+export type Props = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
+
+export const UserComponent: React.FC<Props> = ({ logout, username }) => {
   return (
     <div style={{ display: "inline-block" }}>
-      {username !== "" ? (
+      {!isEmpty(username) ? (
         <div>
           <span>Welcome, {username} </span>
-          <Button
-            color="blue"
-            onClick={tryToLogOut}
-            textButton="Press to Log Out"
-          />
+          <Button color="blue" onClick={logout} textButton="Press to Log Out" />
         </div>
       ) : (
         <span>Try to logout</span>
@@ -30,3 +30,5 @@ export const User = () => {
     </div>
   );
 };
+
+export const User = connect(mapStateToProps, mapDispatchToProps)(UserComponent);

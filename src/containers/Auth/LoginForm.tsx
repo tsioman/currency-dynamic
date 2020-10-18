@@ -1,29 +1,49 @@
 import React, { useCallback, useState } from "react";
+import { connect } from "react-redux";
+import { isEmpty } from "ramda";
+import { loginSlice } from "./reducer";
+import { CurrencyState } from "@/rdx/reducer";
+import { Redirect } from "react-router";
+
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { Form } from "@/components/Form/Form";
-import { login } from "@/api/auth";
-import { useHistory } from "react-router-dom";
 
-export const LoginForm: React.FC<{}> = () => {
-  const history = useHistory();
-  const [name, setName] = useState("");
+const mapStateToProps = ({ login }: CurrencyState) => ({
+  ...login,
+});
+const mapDispatchToProps = {
+  login: loginSlice.actions.login,
+};
+
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+export const LoginFormComponent: React.FC<Props> = ({ username, login }) => {
+  const [name, setName] = useState(username);
   const onSubmit = useCallback(
     async (ev) => {
       ev.preventDefault();
-      await login(name);
-      history.push("/");
+      if (!isEmpty(name)) {
+        login(name);
+      }
     },
-    [name]
+    [name, login]
   );
-  const onChange = useCallback(
-    (e) => setName((e.target as HTMLInputElement).value),
-    [name]
-  );
-  return (
+
+  const onChange = (ev: React.FormEvent) =>
+    setName((ev.target as HTMLInputElement).value);
+
+  return isEmpty(username) ? (
     <Form onSubmit={onSubmit} formName="Enter your name for login">
       <Input labelText="Name:" value={name} onChange={onChange} />
       <Button isFormButton={true} textButton="Login" />
     </Form>
+  ) : (
+    <Redirect to="/" />
   );
 };
+
+export const LoginForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginFormComponent);
