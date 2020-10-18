@@ -1,7 +1,7 @@
 import React from "react";
 import { InitialConfig } from "@/data";
 import { Currency } from "./Currency";
-import { Graph } from "@/components/Graph/Graph";
+import { Graph } from "components/Graph/Graph";
 import { getCurrentDate } from "@/utils/date";
 import { mount } from "enzyme";
 import { responseRUB } from "@/../__mocks__/rates";

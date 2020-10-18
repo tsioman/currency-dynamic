@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import { AnimationControl } from "../../types";
+import { AnimationControl } from "@/types";
 
 export interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: (e) => void;

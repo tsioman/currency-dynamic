@@ -14,8 +14,8 @@ export const User = () => {
   }, []);
 
   return (
-    <div style={{ margin: "10px 0" }}>
-      {username ? (
+    <div style={{ display: "inline-block" }}>
+      {username !== "" ? (
         <div>
           <span>Welcome, {username} </span>
           <Button

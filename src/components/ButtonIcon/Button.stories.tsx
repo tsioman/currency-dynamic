@@ -2,7 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { withKnobs } from "@storybook/addon-knobs";
 import { ButtonIcon } from "./ButtonIcon";
-import { AnimationControl } from "../../types/";
+import { AnimationControl } from "@/types/";
 
 export default {
   title: "Controls",

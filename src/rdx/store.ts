@@ -1,8 +1,6 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-const reducer = combineReducers({});
+import { configureStore } from "@reduxjs/toolkit";
+import { reducer } from "./reducer";
 
 export const store = configureStore({
   reducer,
 });
-
-export type PeopleState = ReturnType<typeof reducer>;

@@ -1,8 +1,8 @@
 import React from "react";
-import { withKnobs, number, optionsKnob } from "@storybook/addon-knobs";
+import { withKnobs, optionsKnob } from "@storybook/addon-knobs";
 import { Graph } from "./Graph";
-import { ColorSetType } from "../../types";
-import { InitialConfig } from "../../data";
+import { ColorSetType } from "@/types";
+import { InitialConfig } from "@/data";
 
 export default {
   title: "GraphMakerComponents",

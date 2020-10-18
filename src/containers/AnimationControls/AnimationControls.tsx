@@ -1,23 +1,27 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
+import { ButtonIcon } from "@/components/ButtonIcon/ButtonIcon";
+import { Select } from "@/components/Select/Select";
+import { ControlsLabel, ControlsView } from "./components/Controls.styled";
 import {
   AnimationStateType,
   AnimationControl,
   AnimationSpeedType,
-} from "../../types/";
-import { Select } from "../../components/Select/Select";
+} from "@/types/";
+import { connect } from "react-redux";
+import { CurrencyState } from "@/rdx/reducer";
+import { animationSlice } from "@/rdx/reducer/animation";
 
-interface IControlsProps {
-  playState: AnimationStateType;
-  speed: AnimationSpeedType;
-  onAnimationStateChange: (buttonState: AnimationStateType) => void;
-  onAnimationSpeedChange: (speed: AnimationSpeedType) => void;
-}
+const mapStateToProps = ({ animation }: CurrencyState) => ({
+  ...animation,
+});
+const { setPlayingState, setSpeed } = animationSlice.actions;
+const mapDispatchToProps = {
+  setPlayingState,
+  setSpeed,
+};
 
-interface IControlsState {
-  buttonState: AnimationStateType;
-}
+export type Props = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 type mapButtonStateType = Record<AnimationControl, AnimationStateType>;
 
@@ -33,52 +37,21 @@ const speedValues: { label: string; value: AnimationSpeedType }[] = [
   { label: "2x", value: 2 },
 ];
 
-const ControlsView = styled.div`
-  margin: 20px 0;
-`;
-const ControlsLabel = styled.div`
-  margin 5px;
-  font-size: 16px;
-`;
-
-export class AnimationControls extends React.PureComponent<
-  IControlsProps,
-  IControlsState
-> {
-  constructor(props: IControlsProps) {
-    super(props);
-    this.state = {
-      buttonState: this.props.playState,
-    };
-  }
-  static getDerivedStateFromProps = (
-    nextProps: IControlsProps,
-    prevState: IControlsState
-  ) =>
-    nextProps.playState !== prevState.buttonState && {
-      buttonState: nextProps.playState,
-    };
-  setAnimationState = (buttonState: AnimationStateType) => {
-    this.setState({
-      buttonState,
-    });
-    this.props.onAnimationStateChange(buttonState);
-  };
+export class AnimationControlsComponent extends React.PureComponent<Props> {
   render() {
-    let buttonId = 0;
     return (
       <ControlsView>
         <ControlsLabel>Animation Control</ControlsLabel>
-        {buttons.map((button: AnimationControl) => {
+        {buttons.map((button: AnimationControl, index) => {
           const buttonState = mapButtonState[button];
-          const isActive = this.state.buttonState === buttonState;
+          const isActive = this.props.playing === buttonState;
           return (
             <ButtonIcon
-              key={buttonId++}
+              key={index}
               icon={button}
               disabled={isActive}
               isActive={isActive}
-              onClick={() => this.setAnimationState(buttonState)}
+              onClick={() => this.props.setPlayingState(buttonState)}
             />
           );
         })}
@@ -86,12 +59,15 @@ export class AnimationControls extends React.PureComponent<
           selected={this.props.speed}
           values={speedValues}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            this.props.onAnimationSpeedChange(
-              Number(e.target.value) as AnimationSpeedType
-            );
+            this.props.setSpeed(Number(e.target.value) as AnimationSpeedType);
           }}
         />
       </ControlsView>
     );
   }
 }
+
+export const AnimationControls = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AnimationControlsComponent);
