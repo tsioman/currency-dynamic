@@ -1,5 +1,5 @@
 import React from "react";
-import { GraphDataType } from "../../types/";
+import { GraphDataType } from "@/types/";
 
 type PathType = {
   color: string;

@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import { ColorSetType } from "../../types/";
+import { ColorSetType } from "@/types/";
 
 export type ButtonStyleType = {
   isActive?: boolean;
@@ -21,7 +21,7 @@ const BaseButton = css`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   &:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   }
 `;
 const ActiveButton = css`

@@ -9,7 +9,7 @@ let length = 0;
 type WithAnimateProps = {
   speed: AnimationSpeedType;
   playState: AnimationStateType;
-  onAnimationStateChange: (buttonState: AnimationStateType) => void;
+  onAnimationStateChange?: (buttonState: AnimationStateType) => void;
 };
 
 export const withAnimate = <Props extends Object>(
@@ -26,7 +26,7 @@ export const withAnimate = <Props extends Object>(
       const totalLength = Math.ceil(node.getTotalLength());
       const currentStroke = [length++, totalLength].join(" ");
 
-      if (length >= totalLength) {
+      if (length >= totalLength && onAnimationStateChange) {
         onAnimationStateChange("stopped");
       }
 
@@ -48,7 +48,6 @@ export const withAnimate = <Props extends Object>(
   const ref = useCallback(animateCallback, [step]);
 
   useEffect(() => {
-    console.log(playState)
     if (playState === "running") {
       timerId = setInterval(() => setStep(i++), 1000 / (fps * speed));
     } else {

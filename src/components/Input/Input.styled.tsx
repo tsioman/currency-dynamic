@@ -7,6 +7,7 @@ const BaseInput = css`
 `;
 
 export const LabelStyled = styled.label`
+  display: inline-block;
   font-size: 16px;
   margin-bottom: 5px;
   padding: 1em 1em 0.5em 0;
