@@ -8,7 +8,7 @@ import { Redirect } from "react-router";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { Form } from "@/components/Form/Form";
-
+import { usernameMinLength } from "./reducer";
 const mapStateToProps = ({ login }: CurrencyState) => ({
   ...login,
 });
@@ -23,7 +23,7 @@ export const LoginFormComponent: React.FC<Props> = ({ username, login }) => {
   const onSubmit = useCallback(
     async (ev) => {
       ev.preventDefault();
-      if (!isEmpty(name)) {
+      if (name.length > usernameMinLength) {
         login(name);
       }
     },
@@ -35,7 +35,13 @@ export const LoginFormComponent: React.FC<Props> = ({ username, login }) => {
 
   return isEmpty(username) ? (
     <Form onSubmit={onSubmit} formName="Enter your name for login">
-      <Input labelText="Name:" value={name} onChange={onChange} />
+      <Input
+        minLength={4}
+        maxLength={10}
+        labelText="Name:"
+        value={name}
+        onChange={onChange}
+      />
       <Button isFormButton={true} textButton="Login" />
     </Form>
   ) : (

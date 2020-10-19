@@ -22,7 +22,7 @@ export const loginSlice = createSlice({
       if (payload.length > usernameMinLength) {
         return { status: CheckState.succeed, username: payload };
       }
-      return state;
+      return { status: CheckState.failed, username: payload };
     },
     logout: () => ({
       username: "",

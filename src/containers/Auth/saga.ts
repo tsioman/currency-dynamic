@@ -11,7 +11,7 @@ export function* checkUserSession() {
 }
 
 const refreshPage = () => {
-  document.location.reload()
+  document.location.reload();
 };
 
 export function* clearUserSession() {
@@ -23,7 +23,7 @@ export function* saveUserSession({
   payload,
 }: ReturnType<typeof actions.login>) {
   const username = String(payload);
-  if (username?.length > usernameMinLength && !isEmpty(username)) {
+  if (username?.length > usernameMinLength) {
     yield call(login, username);
   }
 }
