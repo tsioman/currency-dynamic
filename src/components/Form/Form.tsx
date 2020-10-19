@@ -2,7 +2,7 @@ import React from "react";
 import { FormStyled, FormWrapperStyled } from "./Form.styled";
 
 type FormType = {
-  onSubmit?: () => void;
+  onSubmit?: (e: React.FormEvent) => Promise<void>;
   formName?: string;
 };
 

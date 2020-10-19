@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-export const FormWrapperStyled = styled.form`
+export const FormWrapperStyled = styled.div`
   position: relative;
   top: 50%;
   max-width: 640px;
