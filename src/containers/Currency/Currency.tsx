@@ -8,17 +8,14 @@ import { fetchCurrency } from "@/rdx/reducer/currency";
 import { CurrencyState } from "@/rdx/reducer";
 import { animationSlice } from "@/rdx/reducer/animation";
 import { selectCurrecnyToGraph } from "@/rdx/selectors/graph";
+
 const mapStateToProps = (state: CurrencyState) => {
   const { currency, settings, animation } = state;
-  let graph = [];
-  if (currency.data?.length > 0) {
-    graph = selectCurrecnyToGraph(state);
-  }
   return {
     ...currency,
     ...settings,
     ...animation,
-    graph: graph,
+    graph: selectCurrecnyToGraph(state),
   };
 };
 const mapDispatchToProps = {
