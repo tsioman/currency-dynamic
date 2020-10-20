@@ -26,15 +26,6 @@ export interface ICurrencyExchange {
   end_at: string;
 }
 
-export const currencyGraphConverter = (
-  data: ICurrencyExchange,
-  currency: CurrencyAvaiableType,
-  area: AreaType
-) => {
-  const graphData = ratesToData(data.rates, currency);
-  return dataToGraphZoom(graphData, area);
-};
-
 export const getCurrencyFromApi = (
   currency: CurrencyAvaiableType,
   period: DatePeriodType
@@ -48,7 +39,10 @@ export const getCurrencyFromApi = (
 export const normalize = (value: number, min: number, max: number) =>
   Math.abs((value - min) / (max - min));
 
-export const ratesToData = (rates: IRates, currency: CurrencyAvaiableType) => {
+export const ratesToCurrency = (
+  rates: IRates,
+  currency: CurrencyAvaiableType
+) => {
   const data = [];
   for (let key in rates) {
     data.push(rates[key][currency]);
@@ -56,15 +50,18 @@ export const ratesToData = (rates: IRates, currency: CurrencyAvaiableType) => {
   return data;
 };
 
-export const dataToGraphZoom = (
-  data: number[],
+export const currencyToGraph = (
+  data: number[] | null,
   area: AreaType
 ): GraphDataType => {
-  const xInterval = area.width / data.length;
-  const max = Math.max.apply(null, data);
-  const min = Math.min.apply(null, data);
-  return data.map((val, i) => [
-    xInterval * i++,
-    normalize(val, min, max) * area.height,
-  ]);
+  if (data) {
+    const xInterval = area.width / data.length;
+    const max = Math.max.apply(null, data);
+    const min = Math.min.apply(null, data);
+    return data.map((val, i) => [
+      xInterval * i++,
+      normalize(val, min, max) * area.height,
+    ]);
+  }
+  return [];
 };
