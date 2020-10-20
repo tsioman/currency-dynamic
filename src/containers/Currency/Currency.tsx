@@ -31,15 +31,14 @@ export class CurrencyComponent extends React.PureComponent<Props> {
   }
 
   render() {
-    const { loading, data, error, area, graph } = this.props;
+    const { loading, error, area, graph } = this.props;
     return (
       <div>
         <h1>Dynamic graph view for selected currency and period </h1>
         {loading && <span>Please wait</span>}
         {error && <span>{error}</span>}
-        {data && graph.length > 0 && (
-          <svg width={area.width} height={area.height}>
-            <GraphBody area={area} />
+        {this.props.data && graph.length > 0 && (
+          <GraphBody area={area}>
             <Graph
               area={area}
               data={graph}
@@ -49,7 +48,7 @@ export class CurrencyComponent extends React.PureComponent<Props> {
               onAnimationStateChange={this.props.playControl}
               className="graphic"
             />
-          </svg>
+          </GraphBody>
         )}
       </div>
     );

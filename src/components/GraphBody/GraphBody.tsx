@@ -50,15 +50,9 @@ export class GraphBody extends React.Component<IGraphBody> {
     }
     return grid;
   }
-  shouldComponentUpdate(nextProps: IGraphBody) {
-    return (
-      this.props.area.height !== nextProps.area.height ||
-      this.props.area.width !== nextProps.area.width
-    );
-  }
   render() {
     return (
-      <>
+      <svg width={this.props.area.width} height={this.props.area.height}>
         <SVGPath
           {...axisOptions}
           coords={{
@@ -76,7 +70,8 @@ export class GraphBody extends React.Component<IGraphBody> {
           }}
         />
         {this.drawGrid()}
-      </>
+        {this.props.children}
+      </svg>
     );
   }
 }

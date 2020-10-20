@@ -2,7 +2,13 @@ import { InitialConfigType, GraphDataType } from "./types/";
 
 export const InitialConfig: InitialConfigType = Object.freeze({
   color: "red",
-  graph: [],
+  graph: [
+    [1, 3],
+    [2, 5],
+    [3, 2],
+    [4, 16],
+    [18, 5],
+  ],
   buttons: [
     { value: "RUB", color: "red" },
     { value: "USD", color: "green" },
