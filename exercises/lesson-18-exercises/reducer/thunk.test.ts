@@ -1,5 +1,5 @@
 import { fetchPeople } from "../actions/thunk";
-import { store } from "@/containers/App";
+import { store } from "@/App";
 
 const mockResponse = {
   count: 1,

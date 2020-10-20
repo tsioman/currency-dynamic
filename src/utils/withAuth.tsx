@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { isLoggedIn } from "@/api/auth";
+import { isLoggedIn } from "@/modules/Auth/authApi";
 import { Redirect } from "react-router-dom";
 
 enum CheckState {

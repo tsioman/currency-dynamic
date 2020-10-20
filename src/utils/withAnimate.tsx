@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { AnimationStateType, AnimationSpeedType } from "../types";
+import { AnimationStateType, AnimationSpeedType } from "@/types";
 
 const fps = 60;
 let timerId: NodeJS.Timeout;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "../../components/Input/Input";
+import { Input } from "./Input";
 import { action } from "@storybook/addon-actions";
 import { withKnobs } from "@storybook/addon-knobs";
 
