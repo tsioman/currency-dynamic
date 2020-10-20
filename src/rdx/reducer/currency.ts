@@ -2,14 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getCurrencyFromApi,
   ICurrencyExchange,
-  currencyGraphConverter,
-  IRates,
+  ratesToCurrency,
 } from "@/services/Currency";
-import { GraphDataType } from "@/types";
 import { CurrencyState } from "@/rdx/reducer";
 type State = {
   loading: boolean;
-  data: { rates: IRates; graph: GraphDataType } | null;
+  data: number[] | null;
   error: string | null;
 };
 const initialState: State = {
@@ -22,13 +20,11 @@ export const fetchCurrency = createAsyncThunk(
   "currency/fetchCurrency",
   async (params, { getState }) => {
     const { settings } = <CurrencyState>getState();
-    const { area, period, currency } = settings;
-    const ratesData = <ICurrencyExchange>await getCurrencyFromApi(currency, period);
-    const graph = <GraphDataType>currencyGraphConverter(ratesData, currency, area);
-    return {
-      rates: ratesData.rates,
-      graph,
-    };
+    const { period, currency } = settings;
+    const ratesData = <ICurrencyExchange>(
+      await getCurrencyFromApi(currency, period)
+    );
+    return ratesToCurrency(ratesData.rates, currency);
   }
 );
 

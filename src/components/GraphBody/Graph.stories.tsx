@@ -1,6 +1,6 @@
 import React from "react";
 import { withKnobs, optionsKnob } from "@storybook/addon-knobs";
-import { Graph } from "./Graph";
+import { GraphBody } from "./GraphBody";
 import { ColorSetType } from "@/types";
 import { InitialConfig } from "@/data";
 
@@ -28,12 +28,6 @@ const value = optionsKnob(
   "Colors"
 );
 
-const graphGroupId = "Graph Parameters";
-
-export const GraphBody: React.FC<{}> = () => (
-  <Graph
-    options={{ area: { width: 600, height: 300 }, color: value, multiplier: 1 }}
-    data={InitialConfig.graph}
-    playState={"stopped"}
-  />
+export const GraphBodyComponent: React.FC<{}> = () => (
+  <GraphBody area={{ width: 600, height: 300 }} />
 );

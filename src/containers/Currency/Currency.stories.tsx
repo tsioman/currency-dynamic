@@ -1,12 +1,13 @@
 import React from "react";
 import { Currency } from "./Currency";
-
-import { InitialConfig } from "@/data";
-
+import { Provider } from "react-redux";
+import { store } from "@/rdx/store";
 export default {
   title: "Currency App",
 };
 
-export const CurrencyApp: React.FC<{}> = () => (
-  <Currency initial={InitialConfig} />
+export const CurrencyComponent: React.FC<{}> = () => (
+  <Provider store={store}>
+    <Currency />
+  </Provider>
 );
