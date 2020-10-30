@@ -8,8 +8,8 @@ import {
   AnimationSpeedType,
 } from "@/types/";
 import { connect } from "react-redux";
-import { CurrencyState } from "@/rdx/reducer";
-import { animationSlice } from "@/rdx/reducer/animation";
+import { CurrencyState } from "@/store";
+import { animationSlice } from "./reducer";
 
 const mapStateToProps = ({ animation }: CurrencyState) => ({
   ...animation,

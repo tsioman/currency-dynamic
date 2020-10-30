@@ -1,6 +1,6 @@
 import React from "react";
 import { withAuth } from "./withAuth";
-import { isLoggedIn } from "@/api/auth";
+import { isLoggedIn } from "@/modules/Auth/authApi";
 import { mount, ReactWrapper } from "enzyme";
 import { sleep } from "@/utils/sleep";
 import { act } from "react-dom/test-utils";

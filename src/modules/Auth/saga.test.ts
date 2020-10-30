@@ -4,7 +4,7 @@ import { expectSaga } from "redux-saga-test-plan";
 import { checkUserSession, saveUserSession } from "./saga";
 import { CheckState, actions, reducer } from "./reducer";
 
-import { getUserSession, login } from "@/api/auth";
+import { getUserSession, login } from "./authApi";
 
 describe("Login saga", () => {
   it("login success", () => {

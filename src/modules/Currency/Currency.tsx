@@ -1,13 +1,11 @@
 import React from "react";
-import { Graph } from "components/Graph/Graph";
-import { GraphBody } from "@/components/GraphBody/GraphBody";
-
-import "@/../css/main.css";
+import { Graph } from "./components/Graph/Graph";
+import { GraphBody } from "./components/GraphBody/GraphBody";
 import { connect } from "react-redux";
-import { fetchCurrency } from "@/rdx/reducer/currency";
-import { CurrencyState } from "@/rdx/reducer";
-import { animationSlice } from "@/rdx/reducer/animation";
-import { selectCurrecnyToGraph } from "@/rdx/selectors/graph";
+import { fetchCurrency } from "./reducer";
+import { animationSlice } from "@/modules/AnimationControls/";
+import { selectCurrecnyToGraph } from "./selectors";
+import { CurrencyState } from "@/store";
 
 const mapStateToProps = (state: CurrencyState) => {
   const { currency, settings, animation } = state;

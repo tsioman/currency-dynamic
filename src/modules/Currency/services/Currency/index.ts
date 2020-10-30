@@ -4,7 +4,7 @@ import {
   CurrencyAvaiableType,
   DatePeriodType,
 } from "@/types";
-import { http } from "@/api/index";
+import { http } from "@/utils/http";
 
 const eventAPICall = new CustomEvent("APICall", {
   detail: () => {

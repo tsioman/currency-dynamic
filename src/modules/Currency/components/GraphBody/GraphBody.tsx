@@ -1,5 +1,5 @@
 import React from "react";
-import { SVGPath } from "../SVGPath/SVGPath";
+import { SVGPath } from "@/components/SVGPath/SVGPath";
 import { AreaType } from "@/types";
 
 interface IGraphBody {

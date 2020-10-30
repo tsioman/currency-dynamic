@@ -3,7 +3,7 @@ import { Button } from "@/components/Button/Button";
 import { CurrencyState } from "@/rdx/reducer";
 import { connect } from "react-redux";
 import { isEmpty } from "ramda";
-import { actions } from "@/containers/Auth/reducer";
+import { actions } from "./reducer";
 
 const mapStateToProps = ({ login }: CurrencyState) => ({
   ...login,

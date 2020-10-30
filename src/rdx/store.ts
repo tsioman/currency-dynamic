@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { reducer } from "./reducer";
 import createSagaMiddleware from "redux-saga";
 import { fork } from "redux-saga/effects";
-import { loginSaga } from "@/containers/Auth/";
+import { loginSaga } from "@/modules/Auth";
 
 const sagaMiddleware = createSagaMiddleware();
 

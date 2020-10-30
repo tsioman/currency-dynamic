@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "@/components/Button/Button";
-import { settingsSlice } from "@/rdx/reducer/settings";
-import { fetchCurrency } from "@/rdx/reducer/currency";
-import { CurrencyState } from "@/rdx/reducer";
+import { settingsSlice } from "@/modules/SettingsForm/";
+import { fetchCurrency } from "@/modules/Currency/";
+import { CurrencyState } from "@/store";
 import { connect } from "react-redux";
 import { InitialConfig } from "@/data";
 import { ColorSetType, CurrencyAvaiableType } from "@/types/";

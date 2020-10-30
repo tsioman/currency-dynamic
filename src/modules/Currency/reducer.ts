@@ -3,8 +3,8 @@ import {
   getCurrencyFromApi,
   ICurrencyExchange,
   ratesToCurrency,
-} from "@/services/Currency";
-import { CurrencyState } from "@/rdx/reducer";
+} from "@/modules/Currency/services/Currency";
+import { CurrencyState } from "@/store";
 type State = {
   loading: boolean;
   data: number[] | null;

@@ -3,7 +3,7 @@ import {
   ColorSetType,
   AreaType,
   CurrencyAvaiableType,
-} from "../types/";
+} from "@/types/";
 
 export type InitialConfigType = {
   color: ColorSetType;

@@ -1,6 +1,6 @@
 import { isEmpty } from "ramda";
 import { takeEvery, call, put, fork } from "redux-saga/effects";
-import { getUserSession, login, logout } from "@/api/auth";
+import { getUserSession, login, logout } from "./authApi";
 import { actions, usernameMinLength } from "./reducer";
 
 export function* checkUserSession() {

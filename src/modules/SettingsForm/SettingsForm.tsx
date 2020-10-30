@@ -1,11 +1,11 @@
 import React from "react";
 import { Input } from "@/components/Input/Input";
-import { AreaType, DatePeriodType } from "@/types";
-import { settingsSlice } from "@/rdx/reducer/settings";
-import { fetchCurrency } from "@/rdx/reducer/currency";
-import { CurrencyState } from "@/rdx/reducer";
+import { Button } from "@/components/Button/Button";
+import { settingsSlice } from "@/modules/SettingsForm/reducer";
+import { fetchCurrency } from "@/modules/Currency/";
+import { CurrencyState } from "@/store";
 import { connect } from "react-redux";
-import { Button } from "components/Button/Button";
+import { AreaType, DatePeriodType } from "@/types";
 
 const mapStateToProps = ({ settings }: CurrencyState) => ({
   ...settings,

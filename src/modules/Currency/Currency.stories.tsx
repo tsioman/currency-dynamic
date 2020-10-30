@@ -1,7 +1,7 @@
 import React from "react";
 import { Currency } from "./Currency";
 import { Provider } from "react-redux";
-import { store } from "@/rdx/store";
+import { store } from "@/store";
 export default {
   title: "Currency App",
 };

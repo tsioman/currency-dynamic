@@ -1,17 +1,17 @@
-import { responseRUB, responseUSD } from "../../../__mocks__/rates";
-import { ratesToData, normalize } from "./index";
+import { responseRUB, responseUSD } from "@/../__mocks__/rates";
+import { ratesToCurrency, normalize } from "./index";
 
 describe("Currency tests cases", () => {
   it("Convert raw data for RUB rates working corect", () => {
     const expectedData = [81.1888, 79.6793];
-    expect(ratesToData(responseRUB.rates, "RUB")).toEqual(
+    expect(ratesToCurrency(responseRUB.rates, "RUB")).toEqual(
       expect.arrayContaining(expectedData)
     );
   });
 
   it("Convert raw data for USD rates working corect", () => {
     const expectedData = [1.1414, 1.12];
-    expect(ratesToData(responseUSD.rates, "USD")).toEqual(
+    expect(ratesToCurrency(responseUSD.rates, "USD")).toEqual(
       expect.arrayContaining(expectedData)
     );
   });

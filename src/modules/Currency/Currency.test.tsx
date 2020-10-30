@@ -1,11 +1,11 @@
 import React from "react";
 import { InitialConfig } from "@/data";
 import { Currency } from "./Currency";
-import { Graph } from "components/Graph/Graph";
+import { Graph } from "./components/Graph/Graph";
 import { getCurrentDate } from "@/utils/date";
 import { mount } from "enzyme";
 import { responseRUB } from "@/../__mocks__/rates";
-import { getCurrency } from "@/services/Currency";
+import { getCurrencyFromApi } from "./services/Currency";
 
 global.fetch = jest.fn().mockImplementation(() =>
   Promise.resolve({
@@ -26,13 +26,13 @@ describe("Integration tests cases", () => {
 
   it("fetch data from API is ok", async () => {
     expect(
-      await getCurrency("RUB", {
+      await getCurrencyFromApi("RUB", {
         from: "2020-07-01",
         to: getCurrentDate(),
       })
     ).toEqual(responseRUB);
   });
-  const appComponent = mount(<Currency initial={InitialConfig} />);
+  const appComponent = mount(<Currency />);
 
   it("first redner and initial state test [constructor and initial state test]", () => {
     expect(
@@ -58,7 +58,11 @@ describe("Integration tests cases", () => {
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(
       `Array []`
     );
-    expect(appComponent.findWhere((n) => n.name() === "Button" && n.prop("isActive") === false).simulate("click"));
+    expect(
+      appComponent
+        .findWhere((n) => n.name() === "Button" && n.prop("isActive") === false)
+        .simulate("click")
+    );
     expect(appComponent.find(Graph).prop("data")).toMatchInlineSnapshot(`
       Array [
         Array [
