@@ -2,15 +2,15 @@
 
 exports[`Input renders Input with value 1`] = `
 <div
-  className="css-1wbj7b9"
+  className="css-k5rh1f"
 >
   <label
-    className="css-eq8zle"
+    className="css-8ooo6b"
   >
     Label:
   </label>
   <input
-    className="css-5mhwm8"
+    className="css-1jgzoz2"
     onChange={[MockFunction]}
     placeholder="Placeholder"
     type="text"
