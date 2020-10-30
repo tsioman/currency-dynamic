@@ -11,6 +11,7 @@ module.exports = {
       types: path.resolve(__dirname, "src/types"),
       components: path.resolve(__dirname, "src/components"),
       "@": path.resolve(__dirname, "src"),
+      "css": path.resolve(__dirname, "css"),
     },
   },
   output: {

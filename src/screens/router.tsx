@@ -7,15 +7,9 @@ import { NotFoundScreen } from "@/screens/NotFoundScreen";
 export const RootRouter = () => (
   <Router>
     <Switch>
-      <Route path="/login">
-        <LoginScreen />
-      </Route>
-      <Route exact path="/">
-        <CurrecnyScreen />
-      </Route>
-      <Route path="*">
-        <NotFoundScreen />
-      </Route>
+      <Route exact path="/login" component={LoginScreen} />
+      <Route exact path="/" component={CurrecnyScreen} />
+      <Route path="*" component={NotFoundScreen} />
     </Switch>
   </Router>
 );
