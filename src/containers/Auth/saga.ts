@@ -10,13 +10,9 @@ export function* checkUserSession() {
   }
 }
 
-const refreshPage = () => {
-  document.location.reload();
-};
-
 export function* clearUserSession() {
   yield call(logout);
-  yield call(refreshPage);
+  yield call(() => document.location.replace("/"));
 }
 
 export function* saveUserSession({

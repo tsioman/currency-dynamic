@@ -4,34 +4,37 @@ import { isEmpty } from "ramda";
 import { loginSlice } from "./reducer";
 import { CurrencyState } from "@/rdx/reducer";
 import { Redirect } from "react-router";
-
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { Form } from "@/components/Form/Form";
-import { usernameMinLength } from "./reducer";
+
 const mapStateToProps = ({ login }: CurrencyState) => ({
-  ...login,
+  ...login
 });
+
 const mapDispatchToProps = {
-  login: loginSlice.actions.login,
+  loginAction: loginSlice.actions.login,
 };
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-export const LoginFormComponent: React.FC<Props> = ({ username, login }) => {
+export const LoginFormComponent: React.FC<Props> = ({
+  username,
+  loginAction,
+}) => {
   const [name, setName] = useState(username);
   const onSubmit = useCallback(
     async (ev) => {
       ev.preventDefault();
-      if (name.length > usernameMinLength) {
-        login(name);
-      }
+      loginAction(name);
     },
-    [name, login]
+    [name, loginAction]
   );
 
-  const onChange = (ev: React.FormEvent) =>
-    setName((ev.target as HTMLInputElement).value);
+  const onChange = useCallback(
+    (ev: React.FormEvent) => setName((ev.target as HTMLInputElement).value),
+    [setName]
+  );
 
   return isEmpty(username) ? (
     <Form onSubmit={onSubmit} formName="Enter your name for login">

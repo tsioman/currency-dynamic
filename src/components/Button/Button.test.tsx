@@ -12,7 +12,7 @@ describe("Button render check", () => {
   it("Default red button render", () => {
     expect(toJson(buttonWrapper.render())).toMatchInlineSnapshot(`
       <button
-        class="css-1t7edr4"
+        class="css-1pnxjnm"
         color="red"
       >
         red
