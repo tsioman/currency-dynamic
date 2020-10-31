@@ -1,5 +1,5 @@
 import { isEmpty } from "ramda";
-import { takeEvery, call, put, fork } from "redux-saga/effects";
+import { takeEvery, call, put, fork, StrictEffect } from "redux-saga/effects";
 import { getUserSession, login, logout } from "./authApi";
 import { actions } from "./reducer";
 

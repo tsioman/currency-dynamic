@@ -22,7 +22,11 @@ export const UserComponent: React.FC<Props> = ({ logout, username }) => {
       {!isEmpty(username) ? (
         <div>
           <span>Welcome, {username} </span>
-          <Button color="blue" onClick={()=>logout()} textButton="Press to Log Out" />
+          <Button
+            color="blue"
+            onClick={() => logout()}
+            textButton="Press to Log Out"
+          />
         </div>
       ) : (
         <span>Try to logout</span>

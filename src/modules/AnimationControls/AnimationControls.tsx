@@ -38,7 +38,7 @@ const speedValues: { label: string; value: AnimationSpeedType }[] = [
 ];
 
 export class AnimationControlsComponent extends React.PureComponent<Props> {
-  render() {
+  render(): React.ReactNode {
     return (
       <ControlsView>
         <ControlsLabel>Animation Control</ControlsLabel>

@@ -24,8 +24,11 @@ const toSVGCoordinates = ({ offset, multiplier, data }: ISVGPath): string => {
   return d.concat(collection).join(" ");
 };
 
-export const SVGPath = React.forwardRef<SVGPathElement, PathType>(
-  ({ color, strokeWidth, coords, className }, ref) => (
+export const SVGPath = React.forwardRef<SVGPathElement, PathType>(function Path(
+  { color, strokeWidth, coords, className },
+  ref
+) {
+  return (
     <path
       ref={ref}
       d={toSVGCoordinates(coords)}
@@ -34,5 +37,5 @@ export const SVGPath = React.forwardRef<SVGPathElement, PathType>(
       className={className}
       fill="none"
     ></path>
-  )
-);
+  );
+});

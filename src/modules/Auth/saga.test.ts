@@ -19,17 +19,6 @@ describe("Login saga", () => {
       })
       .run();
   });
-  it("login fail", () => {
-    const userSession = "min";
-    return expectSaga(checkUserSession)
-      .withReducer(reducer)
-      .provide([[call(getUserSession), userSession]])
-      .hasFinalState({
-        username: userSession,
-        status: CheckState.failed,
-      })
-      .run();
-  });
   it("checkUserSession", () => {
     const userSession = "Username";
     return expectSaga(saveUserSession, {

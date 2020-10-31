@@ -28,6 +28,6 @@ const value = optionsKnob(
   "Colors"
 );
 
-export const GraphBodyComponent: React.FC<{}> = () => (
+export const GraphBodyComponent: React.FC = () => (
   <GraphBody area={{ width: 600, height: 300 }} />
 );

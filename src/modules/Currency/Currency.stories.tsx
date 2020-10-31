@@ -6,7 +6,7 @@ export default {
   title: "Currency App",
 };
 
-export const CurrencyComponent: React.FC<{}> = () => (
+export const CurrencyComponent: React.FC = () => (
   <Provider store={store}>
     <Currency />
   </Provider>

@@ -11,7 +11,7 @@ export default {
 const buttons: AnimationControl[] = ["stop", "pause", "stop"];
 const onButtonClick = action("Button click");
 
-export const ButtonIconControl: React.FC<{}> = () => {
+export const ButtonIconControl: React.FC = () => {
   return (
     <>
       {buttons.map((button, index) => (

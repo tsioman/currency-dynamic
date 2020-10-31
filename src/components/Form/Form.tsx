@@ -20,7 +20,7 @@ export const FormStyled = styled.form`
 interface IFormType {
   onSubmit?: (e: React.FormEvent) => Promise<void>;
   formName?: string;
-};
+}
 
 export const Form: React.FC<IFormType> = ({ ...props }) => {
   return (

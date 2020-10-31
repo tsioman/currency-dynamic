@@ -9,7 +9,7 @@ import { Input } from "@/components/Input/Input";
 import { Form } from "@/components/Form/Form";
 
 const mapStateToProps = ({ login }: CurrencyState) => ({
-  ...login
+  ...login,
 });
 
 const mapDispatchToProps = {

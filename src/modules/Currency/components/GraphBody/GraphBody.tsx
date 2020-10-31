@@ -17,7 +17,7 @@ export class GraphBody extends React.Component<IGraphBody> {
   }
   drawGrid() {
     const { area, xStep = 70, yStep = 70 } = this.props;
-    let grid: JSX.Element[] = [];
+    const grid: JSX.Element[] = [];
     for (let i = 0; i <= area.height; i = i + yStep) {
       grid.push(
         <SVGPath
