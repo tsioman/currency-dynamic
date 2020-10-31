@@ -44,7 +44,7 @@ export const ratesToCurrency = (
   currency: CurrencyAvaiableType
 ) => {
   const data = [];
-  for (let key in rates) {
+  for (const key in rates) {
     data.push(rates[key][currency]);
   }
   return data;

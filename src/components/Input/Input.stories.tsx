@@ -9,7 +9,7 @@ export default {
 };
 const inputChange = action("Input change");
 
-export const InputControl: React.FC<{}> = () => {
+export const InputControl: React.FC = () => {
   const [value, setValue] = useState<string>();
   const onChange = (e: React.ChangeEvent) => {
     inputChange((e.target as HTMLInputElement).value);

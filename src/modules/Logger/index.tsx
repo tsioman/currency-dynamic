@@ -5,9 +5,9 @@ interface IAppState {
   timeCall: string | null;
 }
 
-export class TimeLogger extends React.Component<{}, IAppState> {
-  constructor({}) {
-    super({});
+export class TimeLogger extends React.Component<null, IAppState> {
+  constructor() {
+    super(null);
     this.state = {
       timeCall: null,
     };

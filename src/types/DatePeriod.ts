@@ -1,4 +1,4 @@
 export type DatePeriodType = {
-  from: string,
-  to: string
+  from: string;
+  to: string;
 };

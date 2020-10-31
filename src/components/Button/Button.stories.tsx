@@ -8,7 +8,7 @@ export default {
   title: "Controls",
   decorators: [withKnobs],
 };
-export const ButtonControl: React.FC<{}> = () => (
+export const ButtonControl: React.FC = () => (
   <>
     {InitialConfig.buttons.map((button, index) => (
       <Button
@@ -25,6 +25,6 @@ export const ButtonControl: React.FC<{}> = () => (
       isActive={boolean("Active", true)}
       onClick={action("Button click")}
     />
-    <Button isFormButton={true} textButton="XL button" onClick={() => {}} />
+    <Button isFormButton={true} textButton="XL button" />
   </>
 );

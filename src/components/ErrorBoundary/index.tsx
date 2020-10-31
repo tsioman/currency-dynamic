@@ -15,14 +15,17 @@ export class ErrorBoundary extends React.Component<IError, IErrorState> {
     this.state = { error: null, errorInfo: null };
   }
 
-  componentDidCatch(error: Error | null, errorInfo: React.ErrorInfo | null) {
+  componentDidCatch(
+    error: Error | null,
+    errorInfo: React.ErrorInfo | null
+  ): void {
     this.setState({
       error,
       errorInfo,
     });
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.errorInfo) {
       return (
         <div>
@@ -35,7 +38,6 @@ export class ErrorBoundary extends React.Component<IError, IErrorState> {
         </div>
       );
     }
-
     return this.props.children;
   }
 }

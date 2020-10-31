@@ -11,7 +11,7 @@ export default {
 
 const selectChange = action("Select change");
 
-export const SelectControl: React.FC<{}> = () => (
+export const SelectControl: React.FC = () => (
   <Select
     selected="label"
     values={[

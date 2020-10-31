@@ -5,12 +5,12 @@ import { mount, ReactWrapper } from "enzyme";
 import { sleep } from "@/utils/sleep";
 import { act } from "react-dom/test-utils";
 
-jest.mock("@/api/auth", () => ({
+jest.mock("@/modules/Auth/authApi", () => ({
   isLoggedIn: jest.fn(),
 }));
 
 jest.mock("react-router-dom", () => ({
-  Redirect: function Redirect(props: object) {
+  Redirect: function Redirect(props: Record<string, unknown>) {
     return <div>Redirect: {JSON.stringify(props)}</div>;
   },
 }));

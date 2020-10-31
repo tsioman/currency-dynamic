@@ -3,6 +3,7 @@ module.exports = {
   coverageDirectory: "coverage",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/internals/jestSettings.js"],
+  testPathIgnorePatterns: ["exercises"],
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
   },
