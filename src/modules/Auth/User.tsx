@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/Button/Button";
-import { CurrencyState } from "@/rdx/reducer";
+import { CurrencyState } from "@/store";
 import { connect } from "react-redux";
 import { isEmpty } from "ramda";
 import { actions } from "./reducer";
@@ -22,7 +22,7 @@ export const UserComponent: React.FC<Props> = ({ logout, username }) => {
       {!isEmpty(username) ? (
         <div>
           <span>Welcome, {username} </span>
-          <Button color="blue" onClick={logout} textButton="Press to Log Out" />
+          <Button color="blue" onClick={()=>logout()} textButton="Press to Log Out" />
         </div>
       ) : (
         <span>Try to logout</span>

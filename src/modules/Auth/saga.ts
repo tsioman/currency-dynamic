@@ -1,7 +1,7 @@
 import { isEmpty } from "ramda";
 import { takeEvery, call, put, fork } from "redux-saga/effects";
 import { getUserSession, login, logout } from "./authApi";
-import { actions, usernameMinLength } from "./reducer";
+import { actions } from "./reducer";
 
 export function* checkUserSession() {
   const userSession = yield call(getUserSession);
@@ -12,16 +12,13 @@ export function* checkUserSession() {
 
 export function* clearUserSession() {
   yield call(logout);
-  yield call(() => document.location.replace("/"));
 }
 
 export function* saveUserSession({
   payload,
 }: ReturnType<typeof actions.login>) {
   const username = String(payload);
-  if (username?.length > usernameMinLength) {
-    yield call(login, username);
-  }
+  yield call(login, username);
 }
 
 export function* loginSaga() {

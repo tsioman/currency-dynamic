@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "ramda";
 import { loginSlice } from "./reducer";
-import { CurrencyState } from "@/rdx/reducer";
+import { CurrencyState } from "@/store";
 import { Redirect } from "react-router";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";

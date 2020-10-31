@@ -1,4 +1,3 @@
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export enum CheckState {
@@ -6,8 +5,6 @@ export enum CheckState {
   succeed,
   failed,
 }
-
-export const usernameMinLength = 3;
 
 export const initialState: { username: string; status?: CheckState } = {
   username: "",
@@ -19,15 +16,14 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     login: (state, { payload }: PayloadAction<string>) => {
-      if (payload.length > usernameMinLength) {
-        return { status: CheckState.succeed, username: payload };
-      }
-      return { status: CheckState.failed, username: payload };
+      return { status: CheckState.succeed, username: payload };
     },
-    logout: () => ({
-      username: "",
-      status: CheckState.failed,
-    }),
+    logout: () => {
+      return {
+        username: "",
+        status: CheckState.failed,
+      };
+    },
   },
 });
 
