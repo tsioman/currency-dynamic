@@ -40,7 +40,7 @@ export const ButtonIconWrapper = styled.button`
   ${({ isActive }: ButtonType) => (isActive ? ActiveButton : "")}
 `;
 
-export const ButtonIcon: React.FC<ButtonType> = ({ ...props }) => (
+export const ButtonIcon: React.FC<ButtonType> = ( props ) => (
   <ButtonIconWrapper {...props}>
     <img src={`/img/${props.icon}.png`} />
   </ButtonIconWrapper>
