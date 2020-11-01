@@ -1,19 +1,20 @@
 import { isEmpty } from "ramda";
-import { takeEvery, call, put, fork } from "redux-saga/effects";
-import { getUserSession, login, logout } from "./authApi";
+import { call, put, fork, take, all } from "redux-saga/effects";
+import { getUserSession, login, logout, sentStatistic } from "./authApi";
 import { actions } from "./reducer";
+
+export function* clearUserSession() {
+  yield all([call(logout), call(sentStatistic)]);
+}
 
 export function* checkUserSession() {
   const userSession = yield call(getUserSession);
   if (!isEmpty(userSession)) {
     yield put(actions.login(userSession));
-  } else  {
+  } else {
     yield put(actions.logout());
+    yield* clearUserSession();
   }
-}
-
-export function* clearUserSession() {
-  yield call(logout);
 }
 
 export function* saveUserSession({
@@ -25,6 +26,10 @@ export function* saveUserSession({
 
 export function* loginSaga() {
   yield fork(checkUserSession);
-  yield takeEvery(actions.login.type, saveUserSession);
-  yield takeEvery(actions.logout.type, clearUserSession);
+  while (true) {
+    const action = yield take(actions.login.type);
+    yield* saveUserSession(action);
+    yield take(actions.logout.type);
+    yield* clearUserSession();
+  }
 }

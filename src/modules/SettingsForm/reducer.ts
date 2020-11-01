@@ -56,3 +56,5 @@ export const settingsSlice = createSlice({
     }),
   },
 });
+
+export const { reducer, actions } = settingsSlice;

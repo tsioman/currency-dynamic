@@ -12,8 +12,8 @@ export const logout = async (): Promise<void> => {
 
 export const getUserSession = async (): Promise<string> => {
   await sleep(1000);
-	const login = await localStorage.getItem('login');
-	return login || "";
+  const login = await localStorage.getItem("login");
+  return login || "";
 };
 
 export const isLoggedIn = async (): Promise<boolean> => {
@@ -23,4 +23,5 @@ export const isLoggedIn = async (): Promise<boolean> => {
 
 export const sentStatistic = async () => {
   await sleep(1000);
+  console.log("successed");
 };
