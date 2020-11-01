@@ -14,8 +14,8 @@ interface IGraphProps {
   area: AreaType;
   color: ColorSetType;
   multiplier?: number;
-  speed: AnimationSpeedType;
-  playState: AnimationStateType;
+  speed?: AnimationSpeedType;
+  playState?: AnimationStateType;
   className?: string;
   onAnimationStateChange?: (buttonState: AnimationStateType) => void;
 }

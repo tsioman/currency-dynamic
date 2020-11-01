@@ -15,7 +15,7 @@ const mapDispatchToProps = {
   setSettings,
   changeArea,
   changePeriod,
-  fetchCurrency,
+  fetchCurrency
 };
 
 export type Props = ReturnType<typeof mapStateToProps> &
