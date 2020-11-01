@@ -6,16 +6,6 @@ import {
 } from "@/types";
 import { http } from "@/utils/http";
 
-const eventAPICall = new CustomEvent("APICall", {
-  detail: () => {
-    const time = new Intl.DateTimeFormat("ru-RU", {
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    }).format();
-    return `Last API call at: ${time}`;
-  },
-});
 export interface IRates {
   [name: string]: { [key: string]: number };
 }
@@ -30,7 +20,6 @@ export const getCurrencyFromApi = (
   currency: CurrencyAvaiableType,
   period: DatePeriodType
 ) => {
-  window.dispatchEvent(eventAPICall);
   return http<ICurrencyExchange>(
     `https://api.exchangeratesapi.io/history?start_at=${period.from}&end_at=${period.to}&symbols=${currency}`
   );
