@@ -54,6 +54,7 @@ export class CurrencyComponent extends React.PureComponent<Props> {
               data={this.props.graph}
               color={this.props.settings.color}
               className="graphic"
+              onAnimationStateChange={this.props.playControl}
             />
           </GraphBody>
         )}

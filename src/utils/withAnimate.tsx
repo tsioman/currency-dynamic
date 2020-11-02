@@ -21,11 +21,9 @@ export const withAnimate = <Props extends Record<string, unknown>>(
       if (node) {
         const totalLength = Math.ceil(node.getTotalLength());
         const currentStroke = [length++, totalLength].join(" ");
-
         if (length >= totalLength && onAnimationStateChange) {
           onAnimationStateChange("stopped");
         }
-
         switch (playState) {
           case "running":
             node.style.strokeDasharray = currentStroke;
@@ -42,7 +40,6 @@ export const withAnimate = <Props extends Record<string, unknown>>(
     };
 
     const ref = useCallback(animateCallback, [step]);
-
     useEffect(() => {
       if (playState === "running") {
         timerId = setInterval(() => setStep(i++), 1000 / (fps * speed));
