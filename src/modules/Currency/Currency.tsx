@@ -2,7 +2,7 @@ import React from "react";
 import { Graph } from "./components/Graph/Graph";
 import { GraphBody } from "./components/GraphBody/GraphBody";
 import { connect } from "react-redux";
-import { currencySlice, fetchCurrency } from "./reducer";
+import { fetchCurrency } from "./reducer";
 import { animationSlice } from "@/modules/AnimationControls/";
 import { selectCurrecnyToGraph } from "./selectors";
 import { CurrencyState } from "@/store";
@@ -34,7 +34,6 @@ export class CurrencyComponent extends React.PureComponent<Props> {
   changeCurrency(value: CurrencyAvaiableType, color: ColorSetType) {
     this.props.setCurrency(value);
     this.props.setColor(color);
-    this.props.fetchCurrency();
   }
   render() {
     const { buttons } = InitialConfig;

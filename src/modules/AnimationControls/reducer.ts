@@ -28,3 +28,5 @@ export const animationSlice = createSlice({
     }),
   },
 });
+
+export const { reducer, actions } = animationSlice;

@@ -5,7 +5,7 @@ import {
   ratesToCurrency,
 } from "@/modules/Currency/services/Currency";
 import { selectCurrentCurrency, selectPeriod } from "@/modules/SettingsForm";
-function* getCurrency() {
+export function* getCurrency() {
   try {
     yield put(actions.pending());
     const period = yield select(selectPeriod);
