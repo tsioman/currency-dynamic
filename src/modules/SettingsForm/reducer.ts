@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   AreaType,
   DatePeriodType,
@@ -16,7 +16,6 @@ export type SettingsState = {
 
 export type AreaAction = PayloadAction<AreaType>;
 export type PeriodAction = PayloadAction<DatePeriodType>;
-export type SettingsAction = PayloadAction<SettingsState>;
 export type CurrecnyAction = PayloadAction<CurrencyAvaiableType>;
 export type ColorSetAction = PayloadAction<ColorSetType>;
 
@@ -26,13 +25,13 @@ const initialState: SettingsState = {
     height: 300,
   },
   period: {
-    from: "2020-07-01",
+    from: "2020-10-01",
     to: getCurrentDate(),
   },
   currency: "RUB",
   color: "red",
 };
-
+export const setSettings = createAction("currency/setSettings");
 export const settingsSlice = createSlice({
   name: "settings",
   initialState,
@@ -45,7 +44,6 @@ export const settingsSlice = createSlice({
       ...state,
       currency: action.payload,
     }),
-    setSettings: (state, action: SettingsAction) => (state = action.payload),
     changeArea: (state, action: AreaAction) => ({
       ...state,
       area: action.payload,

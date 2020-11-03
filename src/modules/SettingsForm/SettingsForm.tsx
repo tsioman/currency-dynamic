@@ -1,8 +1,7 @@
 import React from "react";
 import { Input } from "@/components/Input/Input";
 import { Button } from "@/components/Button/Button";
-import { settingsSlice } from "@/modules/SettingsForm/reducer";
-import { fetchCurrency } from "@/modules/Currency/";
+import { settingsSlice,setSettings } from "@/modules/SettingsForm/reducer";
 import { CurrencyState } from "@/store";
 import { connect } from "react-redux";
 import { AreaType, DatePeriodType } from "@/types";
@@ -10,12 +9,11 @@ import { AreaType, DatePeriodType } from "@/types";
 const mapStateToProps = ({ settings }: CurrencyState) => ({
   ...settings,
 });
-const { setSettings, changeArea, changePeriod } = settingsSlice.actions;
+const { changeArea, changePeriod } = settingsSlice.actions;
 const mapDispatchToProps = {
-  setSettings,
   changeArea,
   changePeriod,
-  fetchCurrency
+  setSettings,
 };
 
 export type Props = ReturnType<typeof mapStateToProps> &
@@ -62,7 +60,7 @@ export class SettingsFormComponent extends React.PureComponent<Props> {
           <Button
             isFormButton={true}
             textButton="Update"
-            onClick={() => this.props.fetchCurrency()}
+            onClick={()=>this.props.setSettings()}
           />
           <Input
             labelText="Width:"
