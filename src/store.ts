@@ -1,17 +1,11 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { settingsSlice } from "@/modules/SettingsForm/";
-import { currencySlice } from "@/modules/Currency/";
-import { animationSlice } from "@/modules/AnimationControls/";
-import { loginSlice, loginSaga } from "@/modules/Auth";
-import createSagaMiddleware from "redux-saga";
-import { fork } from "redux-saga/effects";
+import { createStore } from "redux-dynamic-modules";
+import { getSagaExtension } from "redux-dynamic-modules-saga";
 
-const sagaMiddleware = createSagaMiddleware();
-
-function* rootSaga() {
-  yield fork(loginSaga);
-}
+import { settingsSlice, getSettingsModule } from "@/modules/SettingsForm/";
+import { currencySlice, getCurrencyModule } from "@/modules/Currency/";
+import { animationSlice, getAnimationModule } from "@/modules/AnimationControls/";
+import { loginSlice, getLoginModule } from "@/modules/Auth";
 
 export const reducer = combineReducers({
   settings: settingsSlice.reducer,
@@ -20,11 +14,12 @@ export const reducer = combineReducers({
   login: loginSlice.reducer,
 });
 
-export const store = configureStore({
-  reducer,
-  middleware: [...getDefaultMiddleware({}), sagaMiddleware],
-});
-
-sagaMiddleware.run(rootSaga);
-
 export type CurrencyState = ReturnType<typeof reducer>;
+
+export const store = createStore<CurrencyState>(
+  { extensions: [getSagaExtension({})] },
+  getLoginModule(),
+  getCurrencyModule(),
+  getSettingsModule(),
+  getAnimationModule()
+);

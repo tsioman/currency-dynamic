@@ -6,18 +6,22 @@ import { fetchCurrency } from "./reducer";
 import { animationSlice } from "@/modules/AnimationControls/";
 import { selectCurrecnyToGraph } from "./selectors";
 import { CurrencyState } from "@/store";
+import { InitialConfig } from "@/data";
+import { Button } from "@/components/Button";
+import { CurrencyAvaiableType } from "@/types/";
+import { ColorSetType } from "@/types/";
+import { settingsSlice } from "@/modules/SettingsForm";
 
-const mapStateToProps = (state: CurrencyState) => {
-  const { currency, settings, animation } = state;
-  return {
-    ...currency,
-    ...settings,
-    ...animation,
-    graph: selectCurrecnyToGraph(state),
-  };
-};
+const mapStateToProps = (state: CurrencyState) => ({
+  graph: selectCurrecnyToGraph(state),
+  currency: state.currency,
+  settings: state.settings,
+  animation: state.animation,
+});
 const mapDispatchToProps = {
   fetchCurrency,
+  setCurrency: settingsSlice.actions.setCurrency,
+  setColor: settingsSlice.actions.setColor,
   playControl: animationSlice.actions.setPlayingState,
 };
 export type Props = ReturnType<typeof mapStateToProps> &
@@ -27,27 +31,43 @@ export class CurrencyComponent extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.fetchCurrency();
   }
-
+  changeCurrency(value: CurrencyAvaiableType, color: ColorSetType) {
+    this.props.setCurrency(value);
+    this.props.setColor(color);
+  }
   render() {
-    const { loading, error, area, graph } = this.props;
+    const { buttons } = InitialConfig;
+    const { loading, error, data } = this.props.currency;
+    const { area } = this.props.settings;
     return (
       <div>
         <h1>Dynamic graph view for selected currency and period </h1>
         {loading && <span>Please wait</span>}
         {error && <span>{error}</span>}
-        {this.props.data && graph.length > 0 && (
+        {data && this.props.graph.length > 0 && (
           <GraphBody area={area}>
             <Graph
+              playState={this.props.animation.playing}
+              speed={this.props.animation.speed}
               area={area}
-              data={graph}
-              color={this.props.color}
-              speed={this.props.speed}
-              playState={this.props.playing}
-              onAnimationStateChange={this.props.playControl}
+              data={this.props.graph}
+              color={this.props.settings.color}
               className="graphic"
+              onAnimationStateChange={this.props.playControl}
             />
           </GraphBody>
         )}
+        <div>
+          {buttons.map((button, index) => (
+            <Button
+              color={button.color}
+              key={index}
+              onClick={() => this.changeCurrency(button.value, button.color)}
+              textButton={button.value}
+              isActive={this.props.settings.currency === button.value}
+            />
+          ))}
+        </div>
       </div>
     );
   }
