@@ -8,7 +8,7 @@ import { selectCurrentCurrency, selectPeriod } from "@/modules/SettingsForm";
 import {
   setSettings,
   actions as settingsAction,
-} from "../SettingsForm/reducer";
+} from "@/modules/SettingsForm/reducer";
 
 export function* getCurrency() {
   yield put(actions.pending());

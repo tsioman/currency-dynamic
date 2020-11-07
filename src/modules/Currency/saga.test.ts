@@ -7,14 +7,20 @@ import { reducer, actions, fetchCurrency } from "./reducer";
 import {
   setSettings,
   actions as settingsAction,
-} from "../SettingsForm/reducer";
+} from "@/modules/SettingsForm/reducer";
+import * as faker from "faker";
 import { getCurrencyFromApi, ratesToCurrency } from "./services/Currency";
 import { responseRUB } from "@/../__mocks__/rates";
 import { throwError } from "redux-saga-test-plan/providers";
 
 describe("Currency from API load", () => {
   it("check is fetching and transform data ok", () => {
-    const transformedResponseData = [81.1888, 93.745, 92.5353];
+    const transformedResponseData = new Array(
+      faker.random.number({ min: 4, max: 5 })
+    )
+      .fill(null)
+      .map(() => faker.random.number({ min: 1, max: 100, precision: 0.01 }));
+    console.log(transformedResponseData);
     return expectSaga(getCurrency)
       .withReducer(reducer)
       .provide([
