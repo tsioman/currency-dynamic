@@ -1,9 +1,16 @@
+# next.js build output
+.next
+
 # ide
 .vscode
 
 # builds
 dist/
 storybook-static/
+coverage/
+reports/
+
+#test
 coverage/
 reports/
 
