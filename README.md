@@ -1,1 +1,2 @@
-# otus-lessons
+# sample of react usage
+
